@@ -1,7 +1,5 @@
 package com.solvd.universitymanager.people;
 
-import com.solvd.universitymanager.courses.Course;
-
 import java.time.LocalDate;
 import java.util.Objects;
 
@@ -9,13 +7,11 @@ public class Student extends Person {
 
     private final LocalDate yearOfReceipt;
     private final String major;
-    private final Course course;
 
-    public Student(String name, int id, String email, LocalDate yearOfReceipt, String major, Course course) {
+    public Student(String name, int id, String email, LocalDate yearOfReceipt, String major) {
         super(name, id, email);
         this.yearOfReceipt = yearOfReceipt;
         this.major = major;
-        this.course = course;
     }
 
     public LocalDate getYearOfReceipt() {
@@ -24,10 +20,6 @@ public class Student extends Person {
 
     public String getMajor() {
         return major;
-    }
-
-    public Course getCourse() {
-        return course;
     }
 
     @Override
@@ -40,11 +32,11 @@ public class Student extends Person {
         if (o == null || getClass() != o.getClass()) return false;
         if (!super.equals(o)) return false;
         Student student = (Student) o;
-        return Objects.equals(yearOfReceipt, student.yearOfReceipt) && Objects.equals(major, student.major) && Objects.equals(course, student.course);
+        return Objects.equals(yearOfReceipt, student.yearOfReceipt) && Objects.equals(major, student.major);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(super.hashCode(), yearOfReceipt, major, course);
+        return Objects.hash(super.hashCode(), yearOfReceipt, major);
     }
 }

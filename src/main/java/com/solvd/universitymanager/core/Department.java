@@ -9,11 +9,13 @@ import java.util.List;
 public class Department {
 
     private final String name;
-    private final List<Course> courses = new ArrayList<>();
-    private final List<Instructor> instructors = new ArrayList<>();
+    private final List<Course> courses;
+    private final List<Instructor> instructors;
 
     public Department(String name) {
         this.name = name;
+        this.courses = new ArrayList<>();
+        this.instructors = new ArrayList<>();
     }
 
     public String getName() {

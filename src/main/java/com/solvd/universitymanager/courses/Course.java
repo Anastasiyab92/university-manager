@@ -11,12 +11,13 @@ public class Course {
     private final String name;
     private final int code;
     private final Instructor instructor;
-    private final Set<Student> students = new HashSet<>();
+    private final Set<Student> students;
 
     public Course(String name, int code, Instructor instructor) {
         this.name = name;
         this.code = code;
         this.instructor = instructor;
+        this.students = new HashSet<>();
     }
 
     public String getName() {

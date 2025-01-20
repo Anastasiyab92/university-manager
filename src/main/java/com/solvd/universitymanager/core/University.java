@@ -7,11 +7,13 @@ public class University {
 
     private final String name;
     private final String address;
-    private final List<Faculty> faculties = new ArrayList<>();
+    private final List<Faculty> faculties;
 
     public University(String name, String address) {
         this.name = name;
         this.address = address;
+        this.faculties = new ArrayList<>();
+
     }
 
     public String getName() {

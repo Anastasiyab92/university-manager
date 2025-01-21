@@ -1,16 +1,32 @@
 package com.solvd.universitymanager.people;
 
-import java.util.Objects;
-
 public abstract class Person {
 
-    private final String name;
-    private final int id;
-    private final String email;
+    private Long id;
+    private String name;
+    private String email;
 
-    protected Person(String name, int id, String email) {
-        this.name = name;
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
         this.id = id;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public String getEmail() {
+        return email;
+    }
+
+    public void setEmail(String email) {
         this.email = email;
     }
 
@@ -18,17 +34,5 @@ public abstract class Person {
         return name + " (" + email + ")";
     }
 
-    public abstract String getRoll();
-
-    @Override
-    public boolean equals(Object o) {
-        if (o == null || getClass() != o.getClass()) return false;
-        Person person = (Person) o;
-        return id == person.id && Objects.equals(email, person.email);
-    }
-
-    @Override
-    public int hashCode() {
-        return Objects.hash(id, email);
-    }
+    public abstract String getRole();
 }

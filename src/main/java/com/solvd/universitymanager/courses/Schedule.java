@@ -1,52 +1,49 @@
 package com.solvd.universitymanager.courses;
 
-import java.time.DayOfWeek;
 import java.time.LocalDateTime;
 
 public class Schedule {
 
-    private final WeekDay weekDay;
-    private final Course course;
+    private Long id;
+    private WeekDay weekDay;
     private LocalDateTime dateTime;
 
-    public Schedule(Course course, LocalDateTime dateTime) {
-        this.course = course;
-        this.dateTime = dateTime;
-        this.weekDay = mapToWeekDay(dateTime.getDayOfWeek());
+    public Long getId() {
+        return id;
     }
 
-    private WeekDay mapToWeekDay(DayOfWeek dayOfWeek) {
-        return switch (dayOfWeek) {
-            case MONDAY -> WeekDay.MONDAY;
-            case TUESDAY -> WeekDay.TUESDAY;
-            case WEDNESDAY -> WeekDay.WEDNESDAY;
-            case THURSDAY -> WeekDay.THURSDAY;
-            case FRIDAY -> WeekDay.FRIDAY;
-            case SATURDAY -> WeekDay.SATURDAY;
-            case SUNDAY -> WeekDay.SUNDAY;
-        };
+    public void setId(Long id) {
+        this.id = id;
     }
 
     public LocalDateTime getDateTime() {
         return dateTime;
     }
 
+    public void setDateTime(LocalDateTime dateTime) {
+        this.dateTime = dateTime;
+    }
+
     public WeekDay getWeekDay() {
         return weekDay;
     }
 
-    public Course getCourse() {
-        return course;
-    }
-
-    public void updateSchedule(LocalDateTime dateTime) {
-        this.dateTime = dateTime;
+    public void setWeekDay(WeekDay weekDay) {
+        this.weekDay =
+                switch (weekDay) {
+                    case MONDAY -> WeekDay.MONDAY;
+                    case TUESDAY -> WeekDay.TUESDAY;
+                    case WEDNESDAY -> WeekDay.WEDNESDAY;
+                    case THURSDAY -> WeekDay.THURSDAY;
+                    case FRIDAY -> WeekDay.FRIDAY;
+                    case SATURDAY -> WeekDay.SATURDAY;
+                    case SUNDAY -> WeekDay.SUNDAY;
+                };
     }
 
     @Override
     public String toString() {
         return "Schedule information: " + "\n"
-                + "Date and time: " + dateTime + ", " + weekDay + "\n"
-                + "Course: " + course;
+                + "Date and time: " + dateTime + ", " + weekDay;
     }
 }

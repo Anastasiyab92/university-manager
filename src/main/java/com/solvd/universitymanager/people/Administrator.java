@@ -1,42 +1,40 @@
 package com.solvd.universitymanager.people;
 
-import java.util.Objects;
-
-
 public class Administrator extends Person {
 
-    private final String position;
+    private Long id;
+    private String position;
     private String qualification;
 
-    public Administrator(String name, int id, String email, String position, String qualification) {
-        super(name, id, email);
-        this.position = position;
-        this.qualification = qualification;
+    @Override
+    public Long getId() {
+        return id;
+    }
+
+    @Override
+    public void setId(Long id) {
+        this.id = id;
     }
 
     public String getPosition() {
         return position;
     }
 
+    public void setPosition(String position) {
+        this.position = position;
+    }
+
     public String getQualification() {
         return qualification;
     }
 
+    public void setQualification(String qualification) {
+        this.qualification = qualification;
+    }
+
     @Override
-    public String getRoll() {
+    public String getRole() {
         return "Faculty Administration.";
     }
 
-    @Override
-    public boolean equals(Object o) {
-        if (o == null || getClass() != o.getClass()) return false;
-        if (!super.equals(o)) return false;
-        Administrator that = (Administrator) o;
-        return Objects.equals(position, that.position) && Objects.equals(qualification, that.qualification);
-    }
-
-    @Override
-    public int hashCode() {
-        return Objects.hash(super.hashCode(), position, qualification);
-    }
 }

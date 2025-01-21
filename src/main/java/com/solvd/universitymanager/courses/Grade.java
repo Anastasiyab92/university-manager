@@ -1,28 +1,24 @@
 package com.solvd.universitymanager.courses;
 
-import com.solvd.universitymanager.people.Student;
-
 public class Grade {
 
-    private final Student student;
-    private final Course course;
+    private Long id;
     private double gradeValue;
 
-    public Grade(Student student, Course course) {
-        this.student = student;
-        this.course = course;
+    public Long getId() {
+        return id;
     }
 
-    public Student getStudent() {
-        return student;
-    }
-
-    public Course getCourse() {
-        return course;
+    public void setId(Long id) {
+        this.id = id;
     }
 
     public double getGradeValue() {
         return gradeValue;
+    }
+
+    public void setGradeValue(double gradeValue) {
+        this.gradeValue = gradeValue;
     }
 
     public void setGradeValue(int gradeValue) {
@@ -32,8 +28,6 @@ public class Grade {
     @Override
     public String toString() {
         return "Grade information: " + "\n"
-                + "Student: " + student + "\n"
-                + "Course: " + course + "\n"
                 + "Value: " + gradeValue;
     }
 }

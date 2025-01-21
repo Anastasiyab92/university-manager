@@ -2,39 +2,45 @@ package com.solvd.universitymanager.core;
 
 import com.solvd.universitymanager.people.Administrator;
 
-import java.util.ArrayList;
 import java.util.List;
 
 public class Faculty {
 
-    private final String name;
-    private final List<Department> departments;
+    private Integer id;
+    private String name;
+    private List<Department> departments;
     private List<Administrator> administrators;
 
-    public Faculty(String name) {
-        this.name = name;
-        this.departments = new ArrayList<>();
-        this.administrators = new ArrayList<>();
+    public Integer getId() {
+        return id;
+    }
+
+    public void setId(Integer id) {
+        this.id = id;
     }
 
     public String getName() {
         return name;
     }
 
+    public void setName(String name) {
+        this.name = name;
+    }
+
     public List<Department> getDepartments() {
         return departments;
     }
 
-    public List<Administrator> getAdministrator() {
+    public void setDepartments(List<Department> departments) {
+        this.departments = departments;
+    }
+
+    public List<Administrator> getAdministrators() {
         return administrators;
     }
 
-    public void addDepartment(Department department) {
-        departments.add(department);
-    }
-
-    public void addAdministrator(Administrator administrator) {
-        administrators.add(administrator);
+    public void setAdministrators(List<Administrator> administrators) {
+        this.administrators = administrators;
     }
 
     public Department getDepartmentByName(String name) {

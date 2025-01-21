@@ -1,35 +1,44 @@
 package com.solvd.universitymanager.core;
 
-import java.util.ArrayList;
 import java.util.List;
 
 public class University {
 
-    private final String name;
-    private final String address;
-    private final List<Faculty> faculties;
+    private Integer id;
+    private String name;
+    private String address;
+    private List<Faculty> faculties;
 
-    public University(String name, String address) {
-        this.name = name;
-        this.address = address;
-        this.faculties = new ArrayList<>();
+    public Integer getId() {
+        return id;
+    }
 
+    public void setId(Integer id) {
+        this.id = id;
     }
 
     public String getName() {
         return name;
     }
 
+    public void setName(String name) {
+        this.name = name;
+    }
+
     public String getAddress() {
         return address;
     }
 
-    public void addFaculty(Faculty faculty) {
-        faculties.add(faculty);
+    public void setAddress(String address) {
+        this.address = address;
     }
 
     public List<Faculty> getFaculties() {
         return faculties;
+    }
+
+    public void setFaculties(List<Faculty> faculties) {
+        this.faculties = faculties;
     }
 
     @Override

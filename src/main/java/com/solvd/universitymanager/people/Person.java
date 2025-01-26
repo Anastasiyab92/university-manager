@@ -3,7 +3,8 @@ package com.solvd.universitymanager.people;
 public abstract class Person {
 
     private Long id;
-    private String name;
+    private String firstName;
+    private String LastName;
     private String email;
 
     public Long getId() {
@@ -14,12 +15,20 @@ public abstract class Person {
         this.id = id;
     }
 
-    public String getName() {
-        return name;
+    public String getFirstName() {
+        return firstName;
     }
 
-    public void setName(String name) {
-        this.name = name;
+    public void setFirstName(String firstName) {
+        this.firstName = firstName;
+    }
+
+    public String getLastName() {
+        return LastName;
+    }
+
+    public void setLastName(String lastName) {
+        this.LastName = lastName;
     }
 
     public String getEmail() {
@@ -31,7 +40,7 @@ public abstract class Person {
     }
 
     public String getContactInfo() {
-        return name + " (" + email + ")";
+        return LastName + " (" + email + ")";
     }
 
     public abstract String getRole();

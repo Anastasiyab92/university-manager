@@ -30,8 +30,8 @@ public class CourseRepositoryImpl implements CourseRepository {
 
     @Override
     public void create(Course course, Integer departmentId) {
-        try (Connection connection = CONNECTION_POOL.getConnection();
-             PreparedStatement ps = connection.prepareStatement(INSERT_SQL, Statement.RETURN_GENERATED_KEYS)) {
+        Connection connection = CONNECTION_POOL.getConnection();
+        try (PreparedStatement ps = connection.prepareStatement(INSERT_SQL, Statement.RETURN_GENERATED_KEYS)) {
             ps.setString(1, course.getName());
             ps.setInt(2, course.getCode());
             ps.setInt(3, departmentId);
@@ -42,14 +42,16 @@ public class CourseRepositoryImpl implements CourseRepository {
             }
         } catch (SQLException e) {
             LOGGER.error(e.getMessage());
+        }finally {
+            CONNECTION_POOL.releaseConnection(connection);
         }
     }
 
     @Override
     public Course findById(Integer id) {
         Course course = null;
-        try (Connection connection = CONNECTION_POOL.getConnection();
-             PreparedStatement ps = connection.prepareStatement(SELECT_BY_ID)) {
+        Connection connection = CONNECTION_POOL.getConnection();
+        try (PreparedStatement ps = connection.prepareStatement(SELECT_BY_ID)) {
             ps.setInt(1, id);
             ResultSet rs = ps.executeQuery();
             if (rs.next()) {
@@ -60,6 +62,8 @@ public class CourseRepositoryImpl implements CourseRepository {
             }
         } catch (SQLException e) {
             LOGGER.error(e.getMessage());
+        }finally {
+            CONNECTION_POOL.releaseConnection(connection);
         }
         return course;
     }
@@ -86,8 +90,8 @@ public class CourseRepositoryImpl implements CourseRepository {
     @Override
     public List<Course> findAllWithGrades() {
         List<Course> courses = new ArrayList<>();
-        try (Connection connection = CONNECTION_POOL.getConnection();
-             PreparedStatement ps = connection.prepareStatement(SELECT_WITH_JOIN)) {
+        Connection connection = CONNECTION_POOL.getConnection();
+        try (PreparedStatement ps = connection.prepareStatement(SELECT_WITH_JOIN)) {
             ResultSet rs = ps.executeQuery();
             while (rs.next()) {
                 Course course = new Course();
@@ -108,30 +112,36 @@ public class CourseRepositoryImpl implements CourseRepository {
 
         } catch (SQLException e) {
             LOGGER.error(e.getMessage());
+        }finally {
+            CONNECTION_POOL.releaseConnection(connection);
         }
         return courses;
     }
 
     @Override
     public void update(Course course) {
-        try (Connection connection = CONNECTION_POOL.getConnection();
-             PreparedStatement ps = connection.prepareStatement(UPDATE_SQL)) {
+        Connection connection = CONNECTION_POOL.getConnection();
+        try (PreparedStatement ps = connection.prepareStatement(UPDATE_SQL)) {
             ps.setInt(1, course.getId());
             ps.setString(2, course.getName());
             ps.executeUpdate();
         } catch (SQLException e) {
             LOGGER.error(e.getMessage());
+        }finally {
+            CONNECTION_POOL.releaseConnection(connection);
         }
     }
 
     @Override
     public void delete(Integer id) {
-        try (Connection connection = CONNECTION_POOL.getConnection();
-             PreparedStatement ps = connection.prepareStatement(DELETE_SQL)) {
+        Connection connection = CONNECTION_POOL.getConnection();
+        try (PreparedStatement ps = connection.prepareStatement(DELETE_SQL)) {
             ps.setInt(1, id);
             ps.executeUpdate();
         } catch (SQLException e) {
             LOGGER.error(e.getMessage());
+        }finally {
+            CONNECTION_POOL.releaseConnection(connection);
         }
     }
 }

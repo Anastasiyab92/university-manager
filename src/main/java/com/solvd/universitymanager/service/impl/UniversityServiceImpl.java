@@ -37,7 +37,6 @@ public class UniversityServiceImpl implements UniversityService {
             university.setFaculties(faculties);
 
         }
-
         return university;
     }
 

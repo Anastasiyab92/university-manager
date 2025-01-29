@@ -27,13 +27,13 @@ public class DepartmentServiceImpl implements DepartmentService {
     @Override
     public Department addDepartment(Department department, Integer facultyId) {
         department.setId(null);
+        departmentRepository.create(department, facultyId);
 
         if (department.getCourses() != null) {
             List<Course> courses = department.getCourses().stream()
                     .map(course -> courseService.addCourse(course, department.getId()))
                     .collect(Collectors.toList());
             department.setCourses(courses);
-            departmentRepository.create(department, facultyId);
         }
         return department;
     }

@@ -17,59 +17,57 @@ public class Main {
 
     public static void main(String[] args) {
 
-        UniversityService universityService = new UniversityServiceImpl();
-        University oxfordUniversity = new University();
-        oxfordUniversity.setName("University of Oxford");
-        oxfordUniversity.setAddress("UK");
-        universityService.addUniversity(oxfordUniversity);
+        Grade gradeCourseOxford1 = new Grade();
+        gradeCourseOxford1.setGradeValue(85);
 
-        FacultyService facultyService = new FacultyServiceImpl();
-        Faculty humanitiesDivisionFaculty = new Faculty();
-        humanitiesDivisionFaculty.setName("Humanities Division");
-        humanitiesDivisionFaculty.setDepartments(new ArrayList<>());
-        facultyService.addFaculty(humanitiesDivisionFaculty, oxfordUniversity.getId());
+        Grade gradeCourseOxford2 = new Grade();
+        gradeCourseOxford2.setGradeValue(80);
 
-        Faculty mathematicalInstituteFaculty = new Faculty();
-        mathematicalInstituteFaculty.setName("Mathematical Institute");
-        mathematicalInstituteFaculty.setDepartments(new ArrayList<>());
-        facultyService.addFaculty(mathematicalInstituteFaculty, oxfordUniversity.getId());
-
-        DepartmentService departmentService = new DepartmentServiceImpl();
-        Department literatureDepartment = new Department();
-        literatureDepartment.setName("English Language and Literature");
-        literatureDepartment.setCourses(new ArrayList<>());
-        departmentService.addDepartment(literatureDepartment, humanitiesDivisionFaculty.getId());
-
-        Department appliedMathematicsDepartment = new Department();
-        appliedMathematicsDepartment.setName("Applied Mathematics");
-        appliedMathematicsDepartment.setCourses(new ArrayList<>());
-        departmentService.addDepartment(literatureDepartment, mathematicalInstituteFaculty.getId());
-
-        CourseService courseService = new CourseServiceImpl();
         Course englishLiteratureCourse = new Course();
         englishLiteratureCourse.setCode(50);
         englishLiteratureCourse.setName("English Literature");
         englishLiteratureCourse.setGrades(new ArrayList<>());
-        courseService.addCourse(englishLiteratureCourse, literatureDepartment.getId());
+        englishLiteratureCourse.getGrades().add(gradeCourseOxford1);
 
         Course numericalMethodsCourse = new Course();
         numericalMethodsCourse.setCode(60);
         numericalMethodsCourse.setName("Numerical Methods");
         numericalMethodsCourse.setGrades(new ArrayList<>());
-        courseService.addCourse(englishLiteratureCourse, appliedMathematicsDepartment.getId());
+        numericalMethodsCourse.getGrades().add(gradeCourseOxford2);
 
-        GradeService gradeService = new GradeServiceImpl();
-        Grade gradeCourseOxford1 = new Grade();
-        gradeCourseOxford1.setGradeValue(85);
-        gradeService.addGrade(gradeCourseOxford1);
+        Department literatureDepartment = new Department();
+        literatureDepartment.setName("English Language and Literature");
+        literatureDepartment.setCourses(new ArrayList<>());
+        literatureDepartment.getCourses().add(englishLiteratureCourse);
 
-        Grade gradeCourseOxford2 = new Grade();
-        gradeCourseOxford2.setGradeValue(80);
-        gradeService.addGrade(gradeCourseOxford2);
+        Department appliedMathematicsDepartment = new Department();
+        appliedMathematicsDepartment.setName("Applied Mathematics");
+        appliedMathematicsDepartment.setCourses(new ArrayList<>());
+        appliedMathematicsDepartment.getCourses().add(numericalMethodsCourse);
 
+        Faculty humanitiesDivisionFaculty = new Faculty();
+        humanitiesDivisionFaculty.setName("Humanities Division");
+        humanitiesDivisionFaculty.setDepartments(new ArrayList<>());
+        humanitiesDivisionFaculty.getDepartments().add(literatureDepartment);
+
+        Faculty mathematicalInstituteFaculty = new Faculty();
+        mathematicalInstituteFaculty.setName("Mathematical Institute");
+        mathematicalInstituteFaculty.setDepartments(new ArrayList<>());
+        mathematicalInstituteFaculty.getDepartments().add(appliedMathematicsDepartment);
+
+        UniversityService universityService = new UniversityServiceImpl();
+        University oxfordUniversity = new University();
+        oxfordUniversity.setName("University of Oxford");
+        oxfordUniversity.setAddress("UK");
+        oxfordUniversity.setFaculties(new ArrayList<>());
+        oxfordUniversity.getFaculties().add(humanitiesDivisionFaculty);
+        oxfordUniversity.getFaculties().add(mathematicalInstituteFaculty);
+
+        oxfordUniversity = universityService.addUniversity(oxfordUniversity);
 
         List<University> universityList = universityService.findAllUniversitiesWithFaculties();
-        LOGGER.info(universityList);
 
+        LOGGER.info(oxfordUniversity);
+        LOGGER.info(universityList);
     }
 }

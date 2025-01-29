@@ -27,13 +27,13 @@ public class CourseServiceImpl implements CourseService {
     @Override
     public Course addCourse(Course course, Integer departmentId) {
         course.setId(null);
+        courseRepository.create(course,departmentId);
 
         if (course.getGrades() != null) {
             List<Grade> grades = course.getGrades().stream()
                     .map(grade -> gradeService.addGrade(grade))
                     .collect(Collectors.toList());
             course.setGrades(grades);
-            courseRepository.create(course, departmentId);
         }
         return course;
     }

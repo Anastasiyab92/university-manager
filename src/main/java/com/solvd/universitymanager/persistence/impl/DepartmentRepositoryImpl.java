@@ -29,8 +29,8 @@ public class DepartmentRepositoryImpl implements DepartmentRepository {
 
     @Override
     public void create(Department department, Integer facultyId) {
-        try (Connection connection = CONNECTION_POOL.getConnection();
-             PreparedStatement ps = connection.prepareStatement(INSERT_SQL, Statement.RETURN_GENERATED_KEYS)) {
+        Connection connection = CONNECTION_POOL.getConnection();
+        try (PreparedStatement ps = connection.prepareStatement(INSERT_SQL, Statement.RETURN_GENERATED_KEYS)) {
             ps.setString(1, department.getName());
             ps.setInt(2, facultyId);
             ps.executeUpdate();
@@ -41,14 +41,16 @@ public class DepartmentRepositoryImpl implements DepartmentRepository {
             }
         } catch (SQLException e) {
             LOGGER.error(e.getMessage());
+        }finally {
+            CONNECTION_POOL.releaseConnection(connection);
         }
     }
 
     @Override
     public Department findById(Integer id) {
         Department department = null;
-        try (Connection connection = CONNECTION_POOL.getConnection();
-             PreparedStatement ps = connection.prepareStatement(SELECT_BY_ID)) {
+        Connection connection = CONNECTION_POOL.getConnection();
+        try (PreparedStatement ps = connection.prepareStatement(SELECT_BY_ID)) {
             ps.setInt(1, id);
             ResultSet rs = ps.executeQuery();
             if (rs.next()) {
@@ -58,6 +60,8 @@ public class DepartmentRepositoryImpl implements DepartmentRepository {
             }
         } catch (SQLException e) {
             LOGGER.error(e.getMessage());
+        }finally {
+            CONNECTION_POOL.releaseConnection(connection);
         }
         return department;
     }
@@ -65,8 +69,8 @@ public class DepartmentRepositoryImpl implements DepartmentRepository {
     @Override
     public List<Department> findAll() {
         List<Department> departments = new ArrayList<>();
-        try (Connection connection = CONNECTION_POOL.getConnection();
-             PreparedStatement ps = connection.prepareStatement(SELECT_ALL)) {
+        Connection connection = CONNECTION_POOL.getConnection();
+        try (PreparedStatement ps = connection.prepareStatement(SELECT_ALL)) {
             ResultSet rs = ps.executeQuery();
             while (rs.next()) {
                 Department department = new Department();
@@ -76,6 +80,8 @@ public class DepartmentRepositoryImpl implements DepartmentRepository {
             }
         } catch (SQLException e) {
             LOGGER.error(e.getMessage());
+        }finally {
+            CONNECTION_POOL.releaseConnection(connection);
         }
         return departments;
     }
@@ -83,8 +89,8 @@ public class DepartmentRepositoryImpl implements DepartmentRepository {
     @Override
     public List<Department> findAllWithCourses() {
         List<Department> departments = new ArrayList<>();
-        try (Connection connection = CONNECTION_POOL.getConnection();
-             PreparedStatement ps = connection.prepareStatement(SELECT_WITH_JOIN)) {
+        Connection connection = CONNECTION_POOL.getConnection();
+        try (PreparedStatement ps = connection.prepareStatement(SELECT_WITH_JOIN)) {
             ResultSet rs = ps.executeQuery();
             while (rs.next()) {
                 Department department = new Department();
@@ -104,30 +110,36 @@ public class DepartmentRepositoryImpl implements DepartmentRepository {
             }
         } catch (SQLException e) {
             LOGGER.error(e.getMessage());
+        }finally {
+            CONNECTION_POOL.releaseConnection(connection);
         }
         return departments;
     }
 
     @Override
     public void update(Department department) {
-        try (Connection connection = CONNECTION_POOL.getConnection();
-             PreparedStatement ps = connection.prepareStatement(UPDATE_SQL)) {
+        Connection connection = CONNECTION_POOL.getConnection();
+        try (PreparedStatement ps = connection.prepareStatement(UPDATE_SQL)) {
             ps.setInt(1, department.getId());
             ps.setString(2, department.getName());
             ps.executeUpdate();
         } catch (SQLException e) {
             LOGGER.error(e.getMessage());
+        }finally {
+            CONNECTION_POOL.releaseConnection(connection);
         }
     }
 
     @Override
     public void delete(Integer id) {
-        try (Connection connection = CONNECTION_POOL.getConnection();
-             PreparedStatement ps = connection.prepareStatement(DELETE_SQL)) {
+        Connection connection = CONNECTION_POOL.getConnection();
+        try (PreparedStatement ps = connection.prepareStatement(DELETE_SQL)) {
             ps.setInt(1, id);
             ps.executeUpdate();
         } catch (SQLException e) {
             LOGGER.error(e.getMessage());
+        }finally {
+            CONNECTION_POOL.releaseConnection(connection);
         }
     }
 }

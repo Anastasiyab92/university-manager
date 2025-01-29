@@ -30,8 +30,8 @@ public class FacultyRepositoryImpl implements FacultyRepository {
 
     @Override
     public void create(Faculty faculty, Integer universityId) {
-        try (Connection connection = CONNECTION_POOL.getConnection();
-             PreparedStatement ps = connection.prepareStatement(INSERT_SQL, Statement.RETURN_GENERATED_KEYS)) {
+        Connection connection = CONNECTION_POOL.getConnection();
+        try (PreparedStatement ps = connection.prepareStatement(INSERT_SQL, Statement.RETURN_GENERATED_KEYS)) {
             ps.setString(1, faculty.getName());
             ps.setInt(2, universityId);
             ps.executeUpdate();
@@ -42,14 +42,16 @@ public class FacultyRepositoryImpl implements FacultyRepository {
             }
         } catch (SQLException e) {
             LOGGER.error(e.getMessage());
+        }finally {
+            CONNECTION_POOL.releaseConnection(connection);
         }
     }
 
     @Override
     public Faculty findById(Integer id) {
         Faculty faculty = null;
-        try (Connection connection = CONNECTION_POOL.getConnection();
-             PreparedStatement ps = connection.prepareStatement(SELECT_BY_ID)) {
+        Connection connection = CONNECTION_POOL.getConnection();
+        try (PreparedStatement ps = connection.prepareStatement(SELECT_BY_ID)) {
             ps.setInt(1, id);
             ResultSet rs = ps.executeQuery();
             if (rs.next()) {
@@ -59,6 +61,8 @@ public class FacultyRepositoryImpl implements FacultyRepository {
             }
         } catch (SQLException e) {
             LOGGER.error(e.getMessage());
+        }finally {
+            CONNECTION_POOL.releaseConnection(connection);
         }
         return faculty;
     }
@@ -66,8 +70,8 @@ public class FacultyRepositoryImpl implements FacultyRepository {
     @Override
     public List<Faculty> findAll() {
         List<Faculty> faculties = new ArrayList<>();
-        try (Connection connection = CONNECTION_POOL.getConnection();
-             PreparedStatement ps = connection.prepareStatement(SELECT_ALL)) {
+        Connection connection = CONNECTION_POOL.getConnection();
+        try (PreparedStatement ps = connection.prepareStatement(SELECT_ALL)) {
             ResultSet rs = ps.executeQuery();
             while (rs.next()) {
                 Faculty faculty = new Faculty();
@@ -77,6 +81,8 @@ public class FacultyRepositoryImpl implements FacultyRepository {
             }
         } catch (SQLException e) {
             LOGGER.error(e.getMessage());
+        }finally {
+            CONNECTION_POOL.releaseConnection(connection);
         }
         return faculties;
     }
@@ -84,8 +90,8 @@ public class FacultyRepositoryImpl implements FacultyRepository {
     @Override
     public List<Faculty> findAllWithDepartments() {
         List<Faculty> faculties = new ArrayList<>();
-        try (Connection connection = CONNECTION_POOL.getConnection();
-             PreparedStatement ps = connection.prepareStatement(SELECT_WITH_JOIN)) {
+        Connection connection = CONNECTION_POOL.getConnection();
+        try (PreparedStatement ps = connection.prepareStatement(SELECT_WITH_JOIN)) {
             ResultSet rs = ps.executeQuery();
             while (rs.next()) {
                 Faculty faculty = new Faculty();
@@ -104,30 +110,36 @@ public class FacultyRepositoryImpl implements FacultyRepository {
             }
         } catch (SQLException e) {
             LOGGER.error(e.getMessage());
+        }finally {
+            CONNECTION_POOL.releaseConnection(connection);
         }
         return faculties;
     }
 
     @Override
     public void update(Faculty faculty) {
-        try (Connection connection = CONNECTION_POOL.getConnection();
-             PreparedStatement ps = connection.prepareStatement(UPDATE_SQL)) {
+        Connection connection = CONNECTION_POOL.getConnection();
+        try (PreparedStatement ps = connection.prepareStatement(UPDATE_SQL)) {
             ps.setInt(1, faculty.getId());
             ps.setString(2, faculty.getName());
             ps.executeUpdate();
         } catch (SQLException e) {
             LOGGER.error(e.getMessage());
+        }finally {
+            CONNECTION_POOL.releaseConnection(connection);
         }
     }
 
     @Override
     public void delete(Integer id) {
-        try (Connection connection = CONNECTION_POOL.getConnection();
-             PreparedStatement ps = connection.prepareStatement(DELETE_SQL)) {
+        Connection connection = CONNECTION_POOL.getConnection();
+        try (PreparedStatement ps = connection.prepareStatement(DELETE_SQL)) {
             ps.setInt(1, id);
             ps.executeUpdate();
         } catch (SQLException e) {
             LOGGER.error(e.getMessage());
+        }finally {
+            CONNECTION_POOL.releaseConnection(connection);
         }
     }
 }

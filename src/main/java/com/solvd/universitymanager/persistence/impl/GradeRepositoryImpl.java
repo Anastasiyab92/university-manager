@@ -24,8 +24,8 @@ public class GradeRepositoryImpl implements GradeRepository {
 
     @Override
     public void create(Grade grade) {
-        try (Connection connection = CONNECTION_POOL.getConnection();
-             PreparedStatement ps = connection.prepareStatement(INSERT_SQL, Statement.RETURN_GENERATED_KEYS)) {
+        Connection connection = CONNECTION_POOL.getConnection();
+        try (PreparedStatement ps = connection.prepareStatement(INSERT_SQL, Statement.RETURN_GENERATED_KEYS)) {
             ps.setDouble(1, grade.getGradeValue());
             ps.executeUpdate();
 
@@ -35,14 +35,16 @@ public class GradeRepositoryImpl implements GradeRepository {
             }
         } catch (SQLException e) {
             LOGGER.error(e.getMessage());
+        }finally {
+            CONNECTION_POOL.releaseConnection(connection);
         }
     }
 
     @Override
     public Grade findById(Long id) {
         Grade grade = null;
-        try (Connection connection = CONNECTION_POOL.getConnection();
-             PreparedStatement ps = connection.prepareStatement(SELECT_BY_ID)) {
+        Connection connection = CONNECTION_POOL.getConnection();
+        try (PreparedStatement ps = connection.prepareStatement(SELECT_BY_ID)) {
             ps.setLong(1, id);
             ResultSet rs = ps.executeQuery();
             if (rs.next()) {
@@ -52,6 +54,8 @@ public class GradeRepositoryImpl implements GradeRepository {
             }
         } catch (SQLException e) {
             LOGGER.error(e.getMessage());
+        }finally {
+            CONNECTION_POOL.releaseConnection(connection);
         }
         return grade;
     }
@@ -59,8 +63,8 @@ public class GradeRepositoryImpl implements GradeRepository {
     @Override
     public List<Grade> findAll() {
         List<Grade> grades = new ArrayList<>();
-        try (Connection connection = CONNECTION_POOL.getConnection();
-             PreparedStatement ps = connection.prepareStatement(SELECT_ALL)) {
+        Connection connection = CONNECTION_POOL.getConnection();
+        try (PreparedStatement ps = connection.prepareStatement(SELECT_ALL)) {
             ResultSet rs = ps.executeQuery();
             while (rs.next()) {
                 Grade grade = new Grade();
@@ -70,30 +74,36 @@ public class GradeRepositoryImpl implements GradeRepository {
             }
         } catch (SQLException e) {
             LOGGER.error(e.getMessage());
+        }finally {
+            CONNECTION_POOL.releaseConnection(connection);
         }
         return grades;
     }
 
     @Override
     public void update(Grade grade) {
-        try (Connection connection = CONNECTION_POOL.getConnection();
-             PreparedStatement ps = connection.prepareStatement(UPDATE_SQL)) {
+        Connection connection = CONNECTION_POOL.getConnection();
+        try (PreparedStatement ps = connection.prepareStatement(UPDATE_SQL)) {
             ps.setLong(1, grade.getId());
             ps.setDouble(2, grade.getGradeValue());
             ps.executeUpdate();
         } catch (SQLException e) {
             LOGGER.error(e.getMessage());
+        }finally {
+            CONNECTION_POOL.releaseConnection(connection);
         }
     }
 
     @Override
     public void delete(Long id) {
-        try (Connection connection = CONNECTION_POOL.getConnection();
-             PreparedStatement ps = connection.prepareStatement(DELETE_SQL)) {
+        Connection connection = CONNECTION_POOL.getConnection();
+        try (PreparedStatement ps = connection.prepareStatement(DELETE_SQL)) {
             ps.setLong(1, id);
             ps.executeUpdate();
         } catch (SQLException e) {
             LOGGER.error(e.getMessage());
+        }finally {
+            CONNECTION_POOL.releaseConnection(connection);
         }
     }
 }

@@ -27,13 +27,13 @@ public class FacultyServiceImpl implements FacultyService {
     @Override
     public Faculty addFaculty(Faculty faculty, Integer universityId) {
         faculty.setId(null);
+        facultyRepository.create(faculty,universityId);
 
         if (faculty.getDepartments() != null) {
             List<Department> departments = faculty.getDepartments().stream()
                     .map(department -> departmentService.addDepartment(department, faculty.getId()))
                     .collect(Collectors.toList());
             faculty.setDepartments(departments);
-            facultyRepository.create(faculty, universityId);
         }
         return faculty;
     }

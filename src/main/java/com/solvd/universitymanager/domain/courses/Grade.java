@@ -1,4 +1,4 @@
-package com.solvd.universitymanager.courses;
+package com.solvd.universitymanager.domain.courses;
 
 public class Grade {
 
@@ -21,13 +21,8 @@ public class Grade {
         this.gradeValue = gradeValue;
     }
 
-    public void setGradeValue(int gradeValue) {
-        this.gradeValue = gradeValue;
-    }
-
     @Override
     public String toString() {
-        return "Grade information: " + "\n"
-                + "Value: " + gradeValue;
+        return "Grade : " + "value = " + gradeValue;
     }
 }

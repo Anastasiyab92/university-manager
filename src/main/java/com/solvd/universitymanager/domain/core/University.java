@@ -1,4 +1,4 @@
-package com.solvd.universitymanager.core;
+package com.solvd.universitymanager.domain.core;
 
 import java.util.List;
 

@@ -1,4 +1,4 @@
-package com.solvd.universitymanager.courses;
+package com.solvd.universitymanager.domain.courses;
 
 public class StudentAlreadyStudyInCourse extends RuntimeException {
 

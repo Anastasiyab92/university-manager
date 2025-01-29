@@ -1,6 +1,6 @@
-package com.solvd.universitymanager.core;
+package com.solvd.universitymanager.domain.core;
 
-import com.solvd.universitymanager.people.Administrator;
+import com.solvd.universitymanager.domain.people.Administrator;
 
 import java.util.List;
 
@@ -52,7 +52,7 @@ public class Faculty {
 
     @Override
     public String toString() {
-        return "Faculty name: " + name + "\n"
-                + "List of departments: " + departments;
+        return "Faculty name: " + name + "," +
+                " list of departments: " + departments;
     }
 }

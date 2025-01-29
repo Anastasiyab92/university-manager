@@ -1,4 +1,4 @@
-package com.solvd.universitymanager.people;
+package com.solvd.universitymanager.domain.people;
 
 import java.time.LocalDate;
 

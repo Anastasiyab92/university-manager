@@ -1,8 +1,9 @@
-package com.solvd.universitymanager.people;
+package com.solvd.universitymanager.domain.people;
 
-public class Instructor extends Person {
+public class Administrator extends Person {
 
     private Long id;
+    private String position;
     private String qualification;
 
     @Override
@@ -15,6 +16,14 @@ public class Instructor extends Person {
         this.id = id;
     }
 
+    public String getPosition() {
+        return position;
+    }
+
+    public void setPosition(String position) {
+        this.position = position;
+    }
+
     public String getQualification() {
         return qualification;
     }
@@ -25,8 +34,7 @@ public class Instructor extends Person {
 
     @Override
     public String getRole() {
-        return "Instructor";
+        return "Faculty Administration.";
     }
-
 
 }

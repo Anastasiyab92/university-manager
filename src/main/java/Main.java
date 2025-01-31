@@ -3,8 +3,8 @@ import com.solvd.universitymanager.domain.core.Faculty;
 import com.solvd.universitymanager.domain.core.University;
 import com.solvd.universitymanager.domain.courses.Course;
 import com.solvd.universitymanager.domain.courses.Grade;
-import com.solvd.universitymanager.service.*;
-import com.solvd.universitymanager.service.impl.*;
+import com.solvd.universitymanager.service.UniversityService;
+import com.solvd.universitymanager.service.impl.UniversityServiceImpl;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
@@ -64,7 +64,7 @@ public class Main {
         oxfordUniversity = universityService.addUniversity(oxfordUniversity);
 
         List<University> universityList = universityService.findAllUniversitiesWithFaculties();
-        
+
         LOGGER.info(universityList);
     }
 }

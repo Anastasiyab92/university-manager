@@ -35,7 +35,7 @@ public class GradeRepositoryImpl implements GradeRepository {
             }
         } catch (SQLException e) {
             LOGGER.error(e.getMessage());
-        }finally {
+        } finally {
             CONNECTION_POOL.releaseConnection(connection);
         }
     }
@@ -54,7 +54,7 @@ public class GradeRepositoryImpl implements GradeRepository {
             }
         } catch (SQLException e) {
             LOGGER.error(e.getMessage());
-        }finally {
+        } finally {
             CONNECTION_POOL.releaseConnection(connection);
         }
         return grade;
@@ -74,7 +74,7 @@ public class GradeRepositoryImpl implements GradeRepository {
             }
         } catch (SQLException e) {
             LOGGER.error(e.getMessage());
-        }finally {
+        } finally {
             CONNECTION_POOL.releaseConnection(connection);
         }
         return grades;
@@ -89,7 +89,7 @@ public class GradeRepositoryImpl implements GradeRepository {
             ps.executeUpdate();
         } catch (SQLException e) {
             LOGGER.error(e.getMessage());
-        }finally {
+        } finally {
             CONNECTION_POOL.releaseConnection(connection);
         }
     }
@@ -102,7 +102,7 @@ public class GradeRepositoryImpl implements GradeRepository {
             ps.executeUpdate();
         } catch (SQLException e) {
             LOGGER.error(e.getMessage());
-        }finally {
+        } finally {
             CONNECTION_POOL.releaseConnection(connection);
         }
     }

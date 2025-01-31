@@ -49,7 +49,7 @@ public class UniversityRepositoryImpl implements UniversityRepository {
             }
         } catch (SQLException e) {
             LOGGER.error(e.getMessage());
-        }finally {
+        } finally {
             CONNECTION_POOL.releaseConnection(connection);
         }
 
@@ -70,7 +70,7 @@ public class UniversityRepositoryImpl implements UniversityRepository {
             }
         } catch (SQLException e) {
             LOGGER.error(e.getMessage());
-        }finally {
+        } finally {
             CONNECTION_POOL.releaseConnection(connection);
         }
         return university;
@@ -91,7 +91,7 @@ public class UniversityRepositoryImpl implements UniversityRepository {
             }
         } catch (SQLException e) {
             LOGGER.error(e.getMessage());
-        }finally {
+        } finally {
             CONNECTION_POOL.releaseConnection(connection);
         }
         return universities;
@@ -141,7 +141,7 @@ public class UniversityRepositoryImpl implements UniversityRepository {
             }
         } catch (SQLException e) {
             LOGGER.error(e.getMessage());
-        }finally {
+        } finally {
             CONNECTION_POOL.releaseConnection(connection);
         }
         return universities;
@@ -157,7 +157,7 @@ public class UniversityRepositoryImpl implements UniversityRepository {
             ps.executeUpdate();
         } catch (SQLException e) {
             LOGGER.error(e.getMessage());
-        }finally{
+        } finally {
             CONNECTION_POOL.releaseConnection(connection);
         }
     }
@@ -170,7 +170,7 @@ public class UniversityRepositoryImpl implements UniversityRepository {
             ps.executeUpdate();
         } catch (SQLException e) {
             LOGGER.error(e.getMessage());
-        }finally {
+        } finally {
             CONNECTION_POOL.releaseConnection(connection);
         }
     }

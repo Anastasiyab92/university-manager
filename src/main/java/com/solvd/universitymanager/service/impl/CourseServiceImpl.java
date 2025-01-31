@@ -10,7 +10,6 @@ import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
 import java.util.List;
-import java.util.stream.Collectors;
 
 public class CourseServiceImpl implements CourseService {
 
@@ -27,7 +26,7 @@ public class CourseServiceImpl implements CourseService {
     @Override
     public Course addCourse(Course course, Integer departmentId) {
         course.setId(null);
-        courseRepository.create(course,departmentId);
+        courseRepository.create(course, departmentId);
 
         if (course.getGrade() != null) {
             Grade grades = course.getGrade();

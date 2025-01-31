@@ -27,7 +27,7 @@ public class FacultyServiceImpl implements FacultyService {
     @Override
     public Faculty addFaculty(Faculty faculty, Integer universityId) {
         faculty.setId(null);
-        facultyRepository.create(faculty,universityId);
+        facultyRepository.create(faculty, universityId);
 
         if (faculty.getDepartments() != null) {
             List<Department> departments = faculty.getDepartments().stream()

@@ -33,12 +33,12 @@
             <department>
                 <name>Entrepreneurship and Innovation</name>
                 <course>
-                <code>220</code>
-                <name>Startup Strategy and Venture Capital</name>
+                    <code>220</code>
+                    <name>Startup Strategy and Venture Capital</name>
                     <grade>
                         <gradeValue>95</gradeValue>
                     </grade>
-            </course>
+                </course>
             </department>
         </faculty>
         <faculty>

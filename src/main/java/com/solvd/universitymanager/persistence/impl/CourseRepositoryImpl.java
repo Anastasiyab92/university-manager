@@ -42,7 +42,7 @@ public class CourseRepositoryImpl implements CourseRepository {
             }
         } catch (SQLException e) {
             LOGGER.error(e.getMessage());
-        }finally {
+        } finally {
             CONNECTION_POOL.releaseConnection(connection);
         }
     }
@@ -62,7 +62,7 @@ public class CourseRepositoryImpl implements CourseRepository {
             }
         } catch (SQLException e) {
             LOGGER.error(e.getMessage());
-        }finally {
+        } finally {
             CONNECTION_POOL.releaseConnection(connection);
         }
         return course;
@@ -109,7 +109,7 @@ public class CourseRepositoryImpl implements CourseRepository {
 
         } catch (SQLException e) {
             LOGGER.error(e.getMessage());
-        }finally {
+        } finally {
             CONNECTION_POOL.releaseConnection(connection);
         }
         return courses;
@@ -124,7 +124,7 @@ public class CourseRepositoryImpl implements CourseRepository {
             ps.executeUpdate();
         } catch (SQLException e) {
             LOGGER.error(e.getMessage());
-        }finally {
+        } finally {
             CONNECTION_POOL.releaseConnection(connection);
         }
     }
@@ -137,7 +137,7 @@ public class CourseRepositoryImpl implements CourseRepository {
             ps.executeUpdate();
         } catch (SQLException e) {
             LOGGER.error(e.getMessage());
-        }finally {
+        } finally {
             CONNECTION_POOL.releaseConnection(connection);
         }
     }

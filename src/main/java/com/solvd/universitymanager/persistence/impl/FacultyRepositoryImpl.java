@@ -37,12 +37,12 @@ public class FacultyRepositoryImpl implements FacultyRepository {
             ps.executeUpdate();
 
             ResultSet rs = ps.getGeneratedKeys();
-            if(rs.next()) {
+            if (rs.next()) {
                 faculty.setId(rs.getInt(1));
             }
         } catch (SQLException e) {
             LOGGER.error(e.getMessage());
-        }finally {
+        } finally {
             CONNECTION_POOL.releaseConnection(connection);
         }
     }
@@ -61,7 +61,7 @@ public class FacultyRepositoryImpl implements FacultyRepository {
             }
         } catch (SQLException e) {
             LOGGER.error(e.getMessage());
-        }finally {
+        } finally {
             CONNECTION_POOL.releaseConnection(connection);
         }
         return faculty;
@@ -81,7 +81,7 @@ public class FacultyRepositoryImpl implements FacultyRepository {
             }
         } catch (SQLException e) {
             LOGGER.error(e.getMessage());
-        }finally {
+        } finally {
             CONNECTION_POOL.releaseConnection(connection);
         }
         return faculties;
@@ -110,7 +110,7 @@ public class FacultyRepositoryImpl implements FacultyRepository {
             }
         } catch (SQLException e) {
             LOGGER.error(e.getMessage());
-        }finally {
+        } finally {
             CONNECTION_POOL.releaseConnection(connection);
         }
         return faculties;
@@ -125,7 +125,7 @@ public class FacultyRepositoryImpl implements FacultyRepository {
             ps.executeUpdate();
         } catch (SQLException e) {
             LOGGER.error(e.getMessage());
-        }finally {
+        } finally {
             CONNECTION_POOL.releaseConnection(connection);
         }
     }
@@ -138,7 +138,7 @@ public class FacultyRepositoryImpl implements FacultyRepository {
             ps.executeUpdate();
         } catch (SQLException e) {
             LOGGER.error(e.getMessage());
-        }finally {
+        } finally {
             CONNECTION_POOL.releaseConnection(connection);
         }
     }

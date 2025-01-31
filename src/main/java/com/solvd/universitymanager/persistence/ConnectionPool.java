@@ -74,11 +74,11 @@ public class ConnectionPool {
     }
 
     public void releaseConnection(Connection connection) {
-            try {
-                connectionBlockingQueue.put(connection);
-            }catch (InterruptedException e){
-                Thread.currentThread().interrupt();
-            }
+        try {
+            connectionBlockingQueue.put(connection);
+        } catch (InterruptedException e) {
+            Thread.currentThread().interrupt();
+        }
     }
 
     public void shutdown() throws SQLException {

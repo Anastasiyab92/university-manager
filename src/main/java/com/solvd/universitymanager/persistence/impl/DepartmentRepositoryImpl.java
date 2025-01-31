@@ -36,12 +36,12 @@ public class DepartmentRepositoryImpl implements DepartmentRepository {
             ps.executeUpdate();
 
             ResultSet rs = ps.getGeneratedKeys();
-            if(rs.next()) {
+            if (rs.next()) {
                 department.setId(rs.getInt(1));
             }
         } catch (SQLException e) {
             LOGGER.error(e.getMessage());
-        }finally {
+        } finally {
             CONNECTION_POOL.releaseConnection(connection);
         }
     }
@@ -60,7 +60,7 @@ public class DepartmentRepositoryImpl implements DepartmentRepository {
             }
         } catch (SQLException e) {
             LOGGER.error(e.getMessage());
-        }finally {
+        } finally {
             CONNECTION_POOL.releaseConnection(connection);
         }
         return department;
@@ -80,7 +80,7 @@ public class DepartmentRepositoryImpl implements DepartmentRepository {
             }
         } catch (SQLException e) {
             LOGGER.error(e.getMessage());
-        }finally {
+        } finally {
             CONNECTION_POOL.releaseConnection(connection);
         }
         return departments;
@@ -110,7 +110,7 @@ public class DepartmentRepositoryImpl implements DepartmentRepository {
             }
         } catch (SQLException e) {
             LOGGER.error(e.getMessage());
-        }finally {
+        } finally {
             CONNECTION_POOL.releaseConnection(connection);
         }
         return departments;
@@ -125,7 +125,7 @@ public class DepartmentRepositoryImpl implements DepartmentRepository {
             ps.executeUpdate();
         } catch (SQLException e) {
             LOGGER.error(e.getMessage());
-        }finally {
+        } finally {
             CONNECTION_POOL.releaseConnection(connection);
         }
     }
@@ -138,7 +138,7 @@ public class DepartmentRepositoryImpl implements DepartmentRepository {
             ps.executeUpdate();
         } catch (SQLException e) {
             LOGGER.error(e.getMessage());
-        }finally {
+        } finally {
             CONNECTION_POOL.releaseConnection(connection);
         }
     }

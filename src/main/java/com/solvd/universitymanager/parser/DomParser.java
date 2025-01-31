@@ -13,7 +13,6 @@ import org.w3c.dom.NodeList;
 
 import javax.xml.parsers.DocumentBuilder;
 import javax.xml.parsers.DocumentBuilderFactory;
-
 import java.io.FileNotFoundException;
 import java.io.InputStream;
 import java.util.ArrayList;
@@ -26,12 +25,12 @@ public class DomParser {
 
     public static void main(String[] args) {
         University university = new University();
-        try{
+        try {
             DocumentBuilderFactory factory = DocumentBuilderFactory.newInstance();
             DocumentBuilder builder = factory.newDocumentBuilder();
 
             InputStream inputStream = DomParser.class.getClassLoader().getResourceAsStream("university.xml");
-            if(inputStream == null){
+            if (inputStream == null) {
                 throw new FileNotFoundException("File can't be found.");
             }
 
@@ -48,12 +47,12 @@ public class DomParser {
             university.setAddress(address);
             university.setFaculties(parseFaculties(root));
             LOGGER.info("University data: {}", university);
-        }catch (Exception e){
+        } catch (Exception e) {
             LOGGER.error(e);
         }
     }
 
-    private static List<Faculty> parseFaculties(Element parent){
+    private static List<Faculty> parseFaculties(Element parent) {
         List<Faculty> faculties = new ArrayList<>();
         NodeList nodeList = parent.getElementsByTagName("faculty");
 
@@ -67,7 +66,7 @@ public class DomParser {
         return faculties;
     }
 
-    private static List<Department> parseDepartments(Element parent){
+    private static List<Department> parseDepartments(Element parent) {
         List<Department> departments = new ArrayList<>();
         NodeList nodeList = parent.getElementsByTagName("department");
 
@@ -81,7 +80,7 @@ public class DomParser {
         return departments;
     }
 
-    private static List<Course> parseCourses(Element parent){
+    private static List<Course> parseCourses(Element parent) {
         List<Course> courses = new ArrayList<>();
         NodeList nodeList = parent.getElementsByTagName("course");
 
@@ -96,7 +95,7 @@ public class DomParser {
         return courses;
     }
 
-    private static Grade parseGrade(Element parent){
+    private static Grade parseGrade(Element parent) {
         Grade grade = new Grade();
         NodeList nodeList = parent.getElementsByTagName("grade");
 

@@ -26,7 +26,7 @@ public class GradeRepositoryImpl implements GradeRepository {
     public void create(Grade grade) {
         Connection connection = CONNECTION_POOL.getConnection();
         try (PreparedStatement ps = connection.prepareStatement(INSERT_SQL, Statement.RETURN_GENERATED_KEYS)) {
-            ps.setDouble(1, grade.getGradeValue());
+            ps.setInt(1, grade.getGradeValue());
             ps.executeUpdate();
 
             ResultSet rs = ps.getGeneratedKeys();
@@ -50,7 +50,7 @@ public class GradeRepositoryImpl implements GradeRepository {
             if (rs.next()) {
                 grade = new Grade();
                 grade.setId(rs.getLong("id"));
-                grade.setGradeValue(rs.getDouble("value"));
+                grade.setGradeValue(rs.getInt("value"));
             }
         } catch (SQLException e) {
             LOGGER.error(e.getMessage());
@@ -69,7 +69,7 @@ public class GradeRepositoryImpl implements GradeRepository {
             while (rs.next()) {
                 Grade grade = new Grade();
                 grade.setId(rs.getLong("id"));
-                grade.setGradeValue(rs.getDouble("value"));
+                grade.setGradeValue(rs.getInt("value"));
                 grades.add(grade);
             }
         } catch (SQLException e) {
@@ -85,7 +85,7 @@ public class GradeRepositoryImpl implements GradeRepository {
         Connection connection = CONNECTION_POOL.getConnection();
         try (PreparedStatement ps = connection.prepareStatement(UPDATE_SQL)) {
             ps.setLong(1, grade.getId());
-            ps.setDouble(2, grade.getGradeValue());
+            ps.setInt(2, grade.getGradeValue());
             ps.executeUpdate();
         } catch (SQLException e) {
             LOGGER.error(e.getMessage());

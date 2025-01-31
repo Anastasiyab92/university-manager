@@ -1,0 +1,58 @@
+<university>
+    <name>University: Massachusetts Institute of Technology</name>
+    <address>Cambridge, MA</address>
+    <faculties>
+        <faculty>
+            <name>Computer Science</name>
+            <department>
+                <name>Artificial Intelligence</name>
+                <course>
+                    <code>200</code>
+                    <name>Machine Learning and Neural Networks</name>
+                    <grade>
+                        <gradeValue>91</gradeValue>
+                    </grade>
+                </course>
+            </department>
+        </faculty>
+        <faculty>
+            <name>Mechanical Engineering</name>
+            <department>
+                <name>Aerospace Engineering</name>
+                <course>
+                    <code>210</code>
+                    <name>Advanced Aerodynamics</name>
+                    <grade>
+                        <gradeValue>78</gradeValue>
+                    </grade>
+                </course>
+            </department>
+        </faculty>
+        <faculty>
+            <name>Business and Management</name>
+            <department>
+                <name>Entrepreneurship and Innovation</name>
+                <course>
+                <code>220</code>
+                <name>Startup Strategy and Venture Capital</name>
+                    <grade>
+                        <gradeValue>95</gradeValue>
+                    </grade>
+            </course>
+            </department>
+        </faculty>
+        <faculty>
+            <name>Biomedical Engineering</name>
+            <department>
+                <name>Bioinformatics</name>
+                <course>
+                    <code>230</code>
+                    <name>Computational Biology and Genomics</name>
+                    <grade>
+                        <gradeValue>88</gradeValue>
+                    </grade>
+                </course>
+            </department>
+        </faculty>
+    </faculties>
+</university>

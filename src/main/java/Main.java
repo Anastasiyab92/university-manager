@@ -26,14 +26,12 @@ public class Main {
         Course englishLiteratureCourse = new Course();
         englishLiteratureCourse.setCode(50);
         englishLiteratureCourse.setName("English Literature");
-        englishLiteratureCourse.setGrades(new ArrayList<>());
-        englishLiteratureCourse.getGrades().add(gradeCourseOxford1);
+        englishLiteratureCourse.setGrade(gradeCourseOxford1);
 
         Course numericalMethodsCourse = new Course();
         numericalMethodsCourse.setCode(60);
         numericalMethodsCourse.setName("Numerical Methods");
-        numericalMethodsCourse.setGrades(new ArrayList<>());
-        numericalMethodsCourse.getGrades().add(gradeCourseOxford2);
+        numericalMethodsCourse.setGrade(gradeCourseOxford2);
 
         Department literatureDepartment = new Department();
         literatureDepartment.setName("English Language and Literature");
@@ -66,8 +64,7 @@ public class Main {
         oxfordUniversity = universityService.addUniversity(oxfordUniversity);
 
         List<University> universityList = universityService.findAllUniversitiesWithFaculties();
-
-        LOGGER.info(oxfordUniversity);
+        
         LOGGER.info(universityList);
     }
 }

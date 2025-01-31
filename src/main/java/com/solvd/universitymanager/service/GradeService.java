@@ -12,7 +12,7 @@ public interface GradeService {
 
     Grade findGradeById(Long id);
 
-    void modifyGrade(Long id, double newValue);
+    void modifyGrade(Long id, Integer newValue);
 
     void removeFaculty(Long id);
 }

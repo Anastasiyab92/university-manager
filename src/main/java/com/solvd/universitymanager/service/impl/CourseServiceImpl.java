@@ -29,11 +29,9 @@ public class CourseServiceImpl implements CourseService {
         course.setId(null);
         courseRepository.create(course,departmentId);
 
-        if (course.getGrades() != null) {
-            List<Grade> grades = course.getGrades().stream()
-                    .map(grade -> gradeService.addGrade(grade))
-                    .collect(Collectors.toList());
-            course.setGrades(grades);
+        if (course.getGrade() != null) {
+            Grade grades = course.getGrade();
+            course.setGrade(grades);
         }
         return course;
     }

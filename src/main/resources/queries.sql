@@ -13,9 +13,9 @@ WHERE instructors_id = 3;
 DELETE FROM instructors
 WHERE id = 3;
 
--- Delete person from list of persons
-DELETE FROM persons
-WHERE id = 3;
+-- Delete student from list of students
+DELETE FROM students
+WHERE id = 35;
 
 -- Delete students who finished studies.
 DELETE FROM students
@@ -25,9 +25,7 @@ WHERE YEAR(`yearOfReceipt`) = 2019;
 DELETE FROM students
 WHERE id = 1;
 
--- Before delete course should delete fk_course_id
-DELETE FROM grades_courses
-WHERE  courses_id = 3;
+-- Delete course in instructors_course
 
 DELETE FROM instructors_courses
 WHERE courses_id =3;
@@ -41,15 +39,15 @@ WHERE id = 5;
 
 -- Delete course from schedule
 DELETE FROM schedules
-WHERE courses_id = 3;
+WHERE course_id = 3;
 
--- Updated person's information
-UPDATE persons SET lastname = 'Tramp', email = 'alice.tramp@example.com'
+-- Updated student's information
+UPDATE students SET lastname = 'Tramp', email = 'alice.tramp@example.com'
 WHERE email = 'alice.johnson@example.com';
 
 -- Updated qualification of instructor
 UPDATE instructors SET qualification = 'PhD'
-WHERE persons_id = 2;
+WHERE id = 2;
 
 -- Update administrator's position
 UPDATE administrators SET position = 'Dean'
@@ -68,11 +66,11 @@ UPDATE grades SET value = 80
 WHERE id = 4;
 
 -- Update courses grades
-UPDATE grades_courses SET grades_id = 5
-WHERE courses_id = 2;
+UPDATE grades SET value = 81
+WHERE id = 2;
 
-UPDATE grades_courses SET grades_id = 2
-WHERE courses_id = 5;
+UPDATE grades SET value = 87
+WHERE id = 5;
 
 -- Rename column
 ALTER TABLE students
@@ -150,8 +148,8 @@ WHERE students_id IN (17,21,25,26);
 
 -- out all active student who has grade_course 5
 SELECT
-p.lastname AS person_name,
 s.id AS student_id,
+s.lastname AS student_name,
 s.major AS student_major,
 s.study_year AS study_year,
 u.name AS university_name,
@@ -166,7 +164,6 @@ LEFT JOIN departments d ON f.id = d.faculty_id
 LEFT JOIN courses c ON d.id = c.department_id
 LEFT JOIN student_courses sc ON c.id = sc.courses_id
 LEFT JOIN students s ON sc.students_id = s.id
-LEFT JOIN persons p ON s.persons_id = p.id
 
 WHERE u.name = 'Harvard University' AND sc.grade_course = 5.0
 ORDER BY s.id;
@@ -174,52 +171,47 @@ ORDER BY s.id;
 -- A list of students who study as an economist and entered in 2020
 SELECT
 s.id AS student_id,
-p.firstname AS firstname,
-p.lastname AS lastname,
+s.firstname AS firstname,
+s.lastname AS lastname,
 s.major AS major,
 s.year_receipt AS year_receipt
 FROM students s
-LEFT JOIN persons p ON s.persons_id = p.id
 WHERE s.major = 'Economics' AND s.year_receipt = '2020-09-01'
-ORDER BY p.lastname;
+ORDER BY s.lastname;
 
 -- List of instructors in university
 SELECT
-p.firstname AS firstname,
-p.lastname AS lastname,
+i.firstname AS firstname,
+i.lastname AS lastname,
 i.qualification AS qualification
-FROM persons  p
-RIGHT JOIN instructors i ON i.persons_id = p.id;
+FROM instructors i;
 
 -- List of students who study in university
 SELECT
 s.id AS student_id,
-p.firstname AS firstname,
-p.lastname AS lastname,
+s.firstname AS firstname,
+s.lastname AS lastname,
 s.major AS major,
 s.year_receipt AS year_receipt
 FROM students s
-INNER JOIN persons p ON s.persons_id = p.id
 WHERE NOT s.study_year = 'graduate';
 
--- returns all records from both persons and administrators, whether there is a match or not
+-- returns all records from both faculties and departments, whether there is a match or not
 SELECT
-    p.id AS person_id,
-    p.firstname AS firstname,
-    p.lastname AS lastname,
-    a.id AS administrator_id,
-    a.qualification AS qualification
-FROM persons p
-LEFT JOIN administrators a ON p.id = a.persons_id
+    f.id AS faculty_id,
+    f.name AS faculty_name,
+    d.id AS department_id,
+    d.name AS department_name
+FROM faculties f
+LEFT JOIN departments d ON f.id = d.faculty_id
 UNION
 SELECT
-  p.id AS person_id,
-    p.firstname AS firstname,
-    p.lastname AS lastname,
-    a.id AS administrator_id,
-    a.qualification AS qualification
-FROM administrators a
-RIGHT JOIN persons p ON p.id = a.persons_id;
+    f.id AS faculty_id,
+    f.name AS faculty_name,
+    d.id AS department_id,
+    d.name AS department_name
+FROM departments d
+RIGHT JOIN faculties f ON d.faculty_id = f.id;
 
 -- count of students who study on the 5 course.
 SELECT COUNT(*) AS number_students

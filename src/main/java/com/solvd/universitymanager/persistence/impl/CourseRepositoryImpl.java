@@ -101,12 +101,9 @@ public class CourseRepositoryImpl implements CourseRepository {
 
                 Grade grade = new Grade();
                 grade.setId(rs.getLong("grade_id"));
-                grade.setGradeValue(rs.getDouble("grade_value"));
+                grade.setGradeValue(rs.getInt("grade_value"));
 
-                if (course.getGrades() != null) {
-                    course.setGrades(new ArrayList<>());
-                }
-                course.getGrades().add(grade);
+                course.setGrade(grade);
                 courses.add(course);
             }
 

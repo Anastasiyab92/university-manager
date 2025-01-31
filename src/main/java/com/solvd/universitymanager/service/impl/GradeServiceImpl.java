@@ -37,7 +37,7 @@ public class GradeServiceImpl implements GradeService {
     }
 
     @Override
-    public void modifyGrade(Long id, double newValue) {
+    public void modifyGrade(Long id, Integer newValue) {
         Grade grade = gradeRepository.findById(id);
         if (grade != null) {
             grade.setGradeValue(newValue);

@@ -10,7 +10,7 @@ public class Course {
     private Integer id;
     private Integer code;
     private String name;
-    private List<Grade> grades;
+    private Grade grade;
     private List<Instructor> instructors;
     private List<Schedule> schedules;
     private List<Student> students;
@@ -24,11 +24,11 @@ public class Course {
         this.id = id;
     }
 
-    public int getCode() {
+    public Integer getCode() {
         return code;
     }
 
-    public void setCode(int code) {
+    public void setCode(Integer code) {
         this.code = code;
     }
 
@@ -64,12 +64,12 @@ public class Course {
         this.students = students;
     }
 
-    public List<Grade> getGrades() {
-        return grades;
+    public Grade getGrade() {
+        return grade;
     }
 
-    public void setGrades(List<Grade> grades) {
-        this.grades = grades;
+    public void setGrade(Grade grade) {
+        this.grade = grade;
     }
 
     @Override
@@ -77,6 +77,6 @@ public class Course {
         return "Course information:" +
                 " ID: " + code + "," +
                 " name: " + name + "," +
-                " list of grades: " + grades;
+                " list of grade: " + grade;
     }
 }

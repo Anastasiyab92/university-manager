@@ -3,7 +3,7 @@ package com.solvd.universitymanager.domain.courses;
 public class Grade {
 
     private Long id;
-    private double gradeValue;
+    private Integer gradeValue;
 
     public Long getId() {
         return id;
@@ -13,11 +13,11 @@ public class Grade {
         this.id = id;
     }
 
-    public double getGradeValue() {
+    public Integer getGradeValue() {
         return gradeValue;
     }
 
-    public void setGradeValue(double gradeValue) {
+    public void setGradeValue(Integer gradeValue) {
         this.gradeValue = gradeValue;
     }
 

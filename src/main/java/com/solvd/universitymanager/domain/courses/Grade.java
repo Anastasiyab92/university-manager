@@ -1,8 +1,15 @@
 package com.solvd.universitymanager.domain.courses;
 
+import jakarta.xml.bind.annotation.XmlAccessType;
+import jakarta.xml.bind.annotation.XmlAccessorType;
+import jakarta.xml.bind.annotation.XmlElement;
+
+@XmlAccessorType(XmlAccessType.FIELD)
 public class Grade {
 
     private Long id;
+
+    @XmlElement(name = "gradeValue")
     private Integer gradeValue;
 
     public Long getId() {

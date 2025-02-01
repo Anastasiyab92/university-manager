@@ -1,11 +1,23 @@
 package com.solvd.universitymanager.domain.courses;
 
+import com.solvd.universitymanager.parser.LocalDateTimeAdapter;
+import jakarta.xml.bind.annotation.XmlAccessType;
+import jakarta.xml.bind.annotation.XmlAccessorType;
+import jakarta.xml.bind.annotation.XmlElement;
+import jakarta.xml.bind.annotation.adapters.XmlJavaTypeAdapter;
+
 import java.time.LocalDateTime;
 
+@XmlAccessorType(XmlAccessType.FIELD)
 public class Schedule {
 
     private Long id;
+
+    @XmlElement(name = "weekDay")
     private WeekDay weekDay;
+
+    @XmlElement(name = "dateTime")
+    @XmlJavaTypeAdapter(LocalDateTimeAdapter.class)
     private LocalDateTime dateTime;
 
     public Long getId() {

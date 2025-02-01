@@ -43,6 +43,7 @@
         <xs:sequence>
             <xs:element name="code" type="xs:integer"/>
             <xs:element name="name" type="xs:string"/>
+            <xs:element name="schedule" type="schedule" maxOccurs="unbounded"/>
             <xs:element name="grade">
                 <xs:complexType>
                     <xs:sequence>
@@ -57,4 +58,21 @@
             <xs:element name="gradeValue" type="xs:integer"/>
         </xs:sequence>
     </xs:complexType>
+    <xs:complexType name="schedule">
+        <xs:sequence>
+            <xs:element name="weekDay" type="weekDay"/>
+            <xs:element name="dateTime" type="xs:dateTime"/>
+        </xs:sequence>
+    </xs:complexType>
+    <xs:simpleType name="weekDay">
+        <xs:restriction base="xs:string">
+            <xs:enumeration value="MONDAY"/>
+            <xs:enumeration value="TUESDAY"/>
+            <xs:enumeration value="WEDNESDAY"/>
+            <xs:enumeration value="THURSDAY"/>
+            <xs:enumeration value="FRIDAY"/>
+            <xs:enumeration value="SATURDAY"/>
+            <xs:enumeration value="SUNDAY"/>
+        </xs:restriction>
+    </xs:simpleType>
 </xs:schema>

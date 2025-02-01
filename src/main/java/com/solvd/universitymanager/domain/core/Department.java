@@ -2,13 +2,21 @@ package com.solvd.universitymanager.domain.core;
 
 import com.solvd.universitymanager.domain.courses.Course;
 import com.solvd.universitymanager.domain.people.Instructor;
+import jakarta.xml.bind.annotation.XmlAccessType;
+import jakarta.xml.bind.annotation.XmlAccessorType;
+import jakarta.xml.bind.annotation.XmlElement;
+import jakarta.xml.bind.annotation.XmlElementWrapper;
 
 import java.util.List;
 
+@XmlAccessorType(XmlAccessType.FIELD)
 public class Department {
 
     private Integer id;
     private String name;
+
+    @XmlElementWrapper(name = "courses")
+    @XmlElement(name = "course")
     private List<Course> courses;
     private List<Instructor> instructors;
 
@@ -46,7 +54,7 @@ public class Department {
 
     @Override
     public String toString() {
-        return "Department name: " + name + "," +
+        return "Department name: " + "\n" + name + "," +
                 "list of courses: " + courses;
     }
 }

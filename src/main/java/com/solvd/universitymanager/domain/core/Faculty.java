@@ -1,13 +1,21 @@
 package com.solvd.universitymanager.domain.core;
 
 import com.solvd.universitymanager.domain.people.Administrator;
+import jakarta.xml.bind.annotation.XmlAccessType;
+import jakarta.xml.bind.annotation.XmlAccessorType;
+import jakarta.xml.bind.annotation.XmlElement;
+import jakarta.xml.bind.annotation.XmlElementWrapper;
 
 import java.util.List;
 
+@XmlAccessorType(XmlAccessType.FIELD)
 public class Faculty {
 
     private Integer id;
     private String name;
+
+    @XmlElementWrapper(name = "departments")
+    @XmlElement(name = "department")
     private List<Department> departments;
     private List<Administrator> administrators;
 
@@ -52,7 +60,7 @@ public class Faculty {
 
     @Override
     public String toString() {
-        return "Faculty name: " + name + "," +
+        return "Faculty name: " + "\n" + name + "," +
                 " list of departments: " + departments;
     }
 }

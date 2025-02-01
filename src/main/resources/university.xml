@@ -4,55 +4,111 @@
     <faculties>
         <faculty>
             <name>Computer Science</name>
-            <department>
-                <name>Artificial Intelligence</name>
-                <course>
-                    <code>200</code>
-                    <name>Machine Learning and Neural Networks</name>
-                    <grade>
-                        <gradeValue>91</gradeValue>
-                    </grade>
-                </course>
-            </department>
+            <departments>
+                <department>
+                    <name>Artificial Intelligence</name>
+                    <courses>
+                        <course>
+                            <code>200</code>
+                            <name>Machine Learning and Neural Networks</name>
+                            <schedules>
+                                <schedule>
+                                    <weekDay>MONDAY</weekDay>
+                                    <dateTime>2025-02-05T10:30:00</dateTime>
+                                </schedule>
+                                <schedule>
+                                    <weekDay>WEDNESDAY</weekDay>
+                                    <dateTime>2025-02-07T14:00:00</dateTime>
+                                </schedule>
+                            </schedules>
+                            <grade>
+                                <gradeValue>91</gradeValue>
+                            </grade>
+                        </course>
+                    </courses>
+                </department>
+            </departments>
         </faculty>
         <faculty>
             <name>Mechanical Engineering</name>
-            <department>
-                <name>Aerospace Engineering</name>
-                <course>
-                    <code>210</code>
-                    <name>Advanced Aerodynamics</name>
-                    <grade>
-                        <gradeValue>78</gradeValue>
-                    </grade>
-                </course>
-            </department>
+            <departments>
+                <department>
+                    <name>Aerospace Engineering</name>
+                    <courses>
+                        <course>
+                            <code>210</code>
+                            <name>Advanced Aerodynamics</name>
+                            <schedules>
+                                <schedule>
+                                    <weekDay>TUESDAY</weekDay>
+                                    <dateTime>2025-02-05T10:30:00</dateTime>
+                                </schedule>
+                                <schedule>
+                                    <weekDay>THURSDAY</weekDay>
+                                    <dateTime>2025-02-07T14:00:00</dateTime>
+                                </schedule>
+                            </schedules>
+                            <grade>
+                                <gradeValue>78</gradeValue>
+                            </grade>
+                        </course>
+                    </courses>
+                </department>
+            </departments>
         </faculty>
         <faculty>
             <name>Business and Management</name>
-            <department>
-                <name>Entrepreneurship and Innovation</name>
-                <course>
-                    <code>220</code>
-                    <name>Startup Strategy and Venture Capital</name>
-                    <grade>
-                        <gradeValue>95</gradeValue>
-                    </grade>
-                </course>
-            </department>
+            <departments>
+                <department>
+                    <name>Entrepreneurship and Innovation</name>
+                    <courses>
+                        <course>
+                            <code>220</code>
+                            <name>Startup Strategy and Venture Capital</name>
+                            <schedules>
+                                <schedule>
+                                    <weekDay>TUESDAY</weekDay>
+                                    <dateTime>2025-02-05T12:30:00</dateTime>
+                                </schedule>
+                                <schedule>
+                                    <weekDay>THURSDAY</weekDay>
+                                    <dateTime>2025-02-07T11:00:00</dateTime>
+                                </schedule>
+                            </schedules>
+                            <grade>
+                                <gradeValue>95</gradeValue>
+                            </grade>
+                        </course>
+                    </courses>
+                </department>
+            </departments>
         </faculty>
         <faculty>
             <name>Biomedical Engineering</name>
-            <department>
-                <name>Bioinformatics</name>
-                <course>
-                    <code>230</code>
-                    <name>Computational Biology and Genomics</name>
-                    <grade>
-                        <gradeValue>88</gradeValue>
-                    </grade>
-                </course>
-            </department>
+            <departments>
+                <department>
+                    <name>Bioinformatics</name>
+                    <courses>
+                        <course>
+                            <code>230</code>
+                            <name>Computational Biology and Genomics</name>
+                            <schedules>
+                                <schedule>
+                                    <weekDay>MONDAY</weekDay>
+                                    <dateTime>2025-02-05T13:30:00</dateTime>
+                                </schedule>
+                                <schedule>
+                                    <weekDay>FRIDAY</weekDay>
+                                    <dateTime>2025-02-07T09:00:00</dateTime>
+                                </schedule>
+                            </schedules>
+                            <grade>
+                                <gradeValue>88</gradeValue>
+                            </grade>
+                        </course>
+                    </courses>
+                </department>
+            </departments>
         </faculty>
     </faculties>
 </university>

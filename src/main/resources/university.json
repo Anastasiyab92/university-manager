@@ -1,0 +1,114 @@
+{
+  "name": "Stanford University",
+  "address": "Stanford, CA",
+  "faculties": [
+    {
+      "name": "Computer Science",
+      "departments": [
+        {
+          "name": "Cybersecurity",
+          "courses": [
+            {
+              "code": "400",
+              "name": "Network Security and Ethical Hacking",
+              "grade": {
+                "gradeValue": "87"
+              },
+              "schedules": [
+                {
+                  "weekDay": "TUESDAY",
+                  "dateTime": "2025-02-11T09:00:00"
+                },
+                {
+                  "weekDay": "THURSDAY",
+                  "dateTime": "2025-02-13T12:00:00"
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "Mechanical Engineering",
+      "departments": [
+        {
+          "name": "Robotics and Automation",
+          "courses": [
+            {
+              "code": "410",
+              "name": "Autonomous Systems and AI",
+              "grade": {
+                "gradeValue": "82"
+              },
+              "schedules": [
+                {
+                  "weekDay": "MONDAY",
+                  "dateTime": "2025-02-10T10:30:00"
+                },
+                {
+                  "weekDay": "WEDNESDAY",
+                  "dateTime": "2025-02-12T12:00:00"
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "Business & Management",
+      "departments": [
+        {
+          "name": "Strategic Management",
+          "courses": [
+            {
+              "code": "420",
+              "name": "Leadership in the Digital Age",
+              "grade": {
+                "gradeValue": "90"
+              },
+              "schedules": [
+                {
+                  "weekDay": "MONDAY",
+                  "dateTime": "2025-02-10T12:00:00"
+                },
+                {
+                  "weekDay": "THURSDAY",
+                  "dateTime": "2025-02-13T15:00:00"
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "Biomedical Sciences",
+      "departments": [
+        {
+          "name": "Neuroscience",
+          "courses": [
+            {
+              "code": "430",
+              "name": "Cognitive Science and Brain Mapping",
+              "grade": {
+                "gradeValue": "88"
+              },
+              "schedules": [
+                {
+                  "weekDay": "FRIDAY",
+                  "dateTime": "2025-02-14T10:00:00"
+                },
+                {
+                  "weekDay": "WEDNESDAY",
+                  "dateTime": "2025-02-12T15:00:00"
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

@@ -1,5 +1,7 @@
 package com.solvd.universitymanager.domain.courses;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonProperty;
 import com.solvd.universitymanager.parser.LocalDateTimeAdapter;
 import jakarta.xml.bind.annotation.XmlAccessType;
 import jakarta.xml.bind.annotation.XmlAccessorType;
@@ -10,14 +12,16 @@ import java.time.LocalDateTime;
 
 @XmlAccessorType(XmlAccessType.FIELD)
 public class Schedule {
-
+    @JsonIgnore
     private Long id;
 
     @XmlElement(name = "weekDay")
+    @JsonProperty("weekDay")
     private WeekDay weekDay;
 
     @XmlElement(name = "dateTime")
     @XmlJavaTypeAdapter(LocalDateTimeAdapter.class)
+    @JsonProperty("dateTime")
     private LocalDateTime dateTime;
 
     public Long getId() {

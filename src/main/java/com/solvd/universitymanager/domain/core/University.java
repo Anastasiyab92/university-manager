@@ -1,5 +1,7 @@
 package com.solvd.universitymanager.domain.core;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonProperty;
 import jakarta.xml.bind.annotation.*;
 
 import java.util.List;
@@ -7,13 +9,16 @@ import java.util.List;
 @XmlRootElement(name = "university")
 @XmlAccessorType(XmlAccessType.FIELD)
 public class University {
-
+    @JsonIgnore
     private Integer id;
+    @JsonProperty("name")
     private String name;
+    @JsonProperty("address")
     private String address;
 
     @XmlElementWrapper(name = "faculties")
     @XmlElement(name = "faculty")
+    @JsonProperty("faculties")
     private List<Faculty> faculties;
 
     public Integer getId() {

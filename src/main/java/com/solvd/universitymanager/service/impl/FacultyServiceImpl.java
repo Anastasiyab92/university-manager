@@ -3,6 +3,7 @@ package com.solvd.universitymanager.service.impl;
 import com.solvd.universitymanager.domain.core.Department;
 import com.solvd.universitymanager.domain.core.Faculty;
 import com.solvd.universitymanager.persistence.FacultyRepository;
+import com.solvd.universitymanager.persistence.impl.FacultyMapperImpl;
 import com.solvd.universitymanager.persistence.impl.FacultyRepositoryImpl;
 import com.solvd.universitymanager.service.DepartmentService;
 import com.solvd.universitymanager.service.FacultyService;
@@ -20,7 +21,8 @@ public class FacultyServiceImpl implements FacultyService {
     private final DepartmentService departmentService;
 
     public FacultyServiceImpl() {
-        this.facultyRepository = new FacultyRepositoryImpl();
+        //this.facultyRepository = new FacultyRepositoryImpl();
+        this.facultyRepository = new FacultyMapperImpl();
         this.departmentService = new DepartmentServiceImpl();
     }
 

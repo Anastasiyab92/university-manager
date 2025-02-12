@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.solvd.universitymanager.persistence.GradeRepository">
+
+    <insert id="create" keyColumn="id" keyProperty="id" useGeneratedKeys="true">
+        Insert Into grades (value) Values (#{gradeValue})
+    </insert>
+
+    <select id="findById" resultMap="GradeResultMap">
+        Select
+        g.id As grade_id,
+        g.value AS value
+        From grades g
+        Where id = #{id}
+    </select>
+
+    <select id="findAll" resultMap="GradeResultMap">
+        Select
+        g.id As grade_id,
+        g.value AS value
+        From grades g
+    </select>
+
+    <update id="update">
+        Update grades Set value = #{gradeValue}
+        Where id = #{id}
+    </update>
+
+    <delete id="delete">
+        Delete From grades
+        Where id = #{id}
+    </delete>
+
+    <resultMap id="GradeResultMap" type="com.solvd.universitymanager.domain.courses.Grade" autoMapping="false">
+        <id property="id" column="id"/>
+        <result property="gradeValue" column="value"/>
+    </resultMap>
+</mapper>

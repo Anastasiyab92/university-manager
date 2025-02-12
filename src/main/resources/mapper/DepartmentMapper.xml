@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.solvd.universitymanager.persistence.DepartmentRepository">
+    <insert id="create" keyColumn="id" keyProperty="department.id" useGeneratedKeys="true">
+        Insert into departments (name, faculty_id) Values (#{department.name}, #{facultyId})
+    </insert>
+
+    <select id="findById" resultMap="DepartmentResultMap">
+        Select
+        d.id AS department_id,
+        d.name AS department_name,
+        d.faculty_id AS faculty_id
+        From departments d
+        Where id = #{id}
+    </select>
+
+    <select id="findAll" resultMap="DepartmentResultMap">
+        Select
+        d.id AS department_id,
+        d.name AS department_name,
+        d.faculty_id AS faculty_id
+        From departments d
+    </select>
+
+    <select id="findAllWithCourses" resultMap="DepartmentWithCoursesResultMap">
+        Select
+        d.id AS department_id, d.name AS department_name,
+        c.id AS course_id, c.code AS course_code, c.name AS course_name
+        LEFT JOIN courses c ON d.id = c.department_id
+    </select>
+
+    <update id="update">
+        Update departments SET name = #{name}, faculty_id = #{facultyId}
+        Where id = #{id}
+    </update>
+
+    <delete id="delete">
+        Delete From departments
+        Where id = #{id}
+    </delete>
+
+    <resultMap id="DepartmentResultMap" type="com.solvd.universitymanager.domain.core.Department" autoMapping="false">
+        <id property="id" column="id"/>
+        <result property="name" column="name"/>
+    </resultMap>
+    <resultMap id="DepartmentWithCoursesResultMap" type="com.solvd.universitymanager.domain.core.Department" autoMapping="false">
+        <id property="id" column="id"/>
+        <result property="name" column="name"/>
+        <collection property="courses" columnPrefix="course_"
+                    resultMap="com.solvd.universitymanager.persistence.CourseRepository.CourseWithGradeResultMap"/>
+    </resultMap>
+</mapper>

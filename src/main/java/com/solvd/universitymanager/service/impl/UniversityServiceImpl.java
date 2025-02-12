@@ -3,6 +3,8 @@ package com.solvd.universitymanager.service.impl;
 
 import com.solvd.universitymanager.domain.core.Faculty;
 import com.solvd.universitymanager.domain.core.University;
+import com.solvd.universitymanager.persistence.UniversityRepository;
+import com.solvd.universitymanager.persistence.impl.UniversityMapperImpl;
 import com.solvd.universitymanager.persistence.impl.UniversityRepositoryImpl;
 import com.solvd.universitymanager.service.FacultyService;
 import com.solvd.universitymanager.service.UniversityService;
@@ -16,12 +18,13 @@ public class UniversityServiceImpl implements UniversityService {
 
     private static final Logger LOGGER = LogManager.getLogger(UniversityServiceImpl.class);
 
-    private final com.solvd.universitymanager.persistence.UniversityRepository universityRepository;
+    private final UniversityRepository universityRepository;
     private final FacultyService facultyService;
 
 
     public UniversityServiceImpl() {
-        this.universityRepository = new UniversityRepositoryImpl();
+        //this.universityRepository = new UniversityRepositoryImpl();
+        this.universityRepository = new UniversityMapperImpl();
         this.facultyService = new FacultyServiceImpl();
     }
 

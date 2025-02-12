@@ -88,7 +88,7 @@ public class CourseRepositoryImpl implements CourseRepository {
     }
 
     @Override
-    public List<Course> findAllWithGrades() {
+    public List<Course> findAllWithGrade() {
         List<Course> courses = new ArrayList<>();
         Connection connection = CONNECTION_POOL.getConnection();
         try (PreparedStatement ps = connection.prepareStatement(SELECT_WITH_JOIN)) {

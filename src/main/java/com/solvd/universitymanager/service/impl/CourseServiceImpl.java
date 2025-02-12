@@ -3,6 +3,7 @@ package com.solvd.universitymanager.service.impl;
 import com.solvd.universitymanager.domain.courses.Course;
 import com.solvd.universitymanager.domain.courses.Grade;
 import com.solvd.universitymanager.persistence.CourseRepository;
+import com.solvd.universitymanager.persistence.impl.CourseMapperImpl;
 import com.solvd.universitymanager.persistence.impl.CourseRepositoryImpl;
 import com.solvd.universitymanager.service.CourseService;
 import com.solvd.universitymanager.service.GradeService;
@@ -19,19 +20,20 @@ public class CourseServiceImpl implements CourseService {
     private final GradeService gradeService;
 
     public CourseServiceImpl() {
-        this.courseRepository = new CourseRepositoryImpl();
+        //this.courseRepository = new CourseRepositoryImpl();
+        this.courseRepository = new CourseMapperImpl();
         this.gradeService = new GradeServiceImpl();
     }
 
     @Override
     public Course addCourse(Course course, Integer departmentId) {
         course.setId(null);
-        courseRepository.create(course, departmentId);
 
         if (course.getGrade() != null) {
-            Grade grades = course.getGrade();
+            Grade grades = gradeService.addGrade(course.getGrade());
             course.setGrade(grades);
         }
+        courseRepository.create(course, departmentId);
         return course;
     }
 

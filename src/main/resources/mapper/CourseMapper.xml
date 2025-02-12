@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.solvd.universitymanager.persistence.CourseRepository">
+    <insert id="create" keyColumn="id" keyProperty="course.id" useGeneratedKeys="true">
+        Insert into courses (code, name, department_id, grade_id) Values (#{course.code}, #{course.name}, #{departmentId}, #{course.grade.id})
+    </insert>
+
+    <select id="findById" resultMap="CourseResultMap">
+        Select
+        c.id AS course_id,
+        c.code AS course_code,
+        c.name AS course_name,
+        c.department_id AS department_id,
+        c.grade_id AS grade_id
+        From courses c
+        Where id = #{id}
+    </select>
+
+    <select id="findAll" resultMap="CourseResultMap">
+        Select
+        c.id AS course_id,
+        c.code AS course_code,
+        c.name AS course_name,
+        c.department_id AS department_id,
+        c.grade_id AS grade_id
+        From courses c
+    </select>
+
+    <select id="findAllWithGrade" resultMap="CourseWithGradeResultMap">
+        Select
+        c.id AS course_id, c.code AS course_code, c.name AS course_name,
+        g.id AS grade_id, g.value AS grade_value
+        FROM courses c
+        LEFT JOIN grades g ON c.grade_id = g.id
+    </select>
+
+    <update id="update">
+        Update courses SET code = #{code}, name = #{name}, department_id = #{departmentId}, grade_id = #{grade.id}
+        Where id = #{id}
+    </update>
+
+    <delete id="delete">
+        Delete From courses
+        Where id = #{id}
+    </delete>
+
+    <resultMap id="CourseResultMap" type="com.solvd.universitymanager.domain.courses.Course" autoMapping="false">
+        <id property="id" column="id"/>
+        <result property="code" column="code"/>
+        <result property="name" column="name"/>
+    </resultMap>
+
+    <resultMap id="CourseWithGradeResultMap" type="com.solvd.universitymanager.domain.courses.Course" autoMapping="false">
+        <id property="id" column="id"/>
+        <result property="code" column="code"/>
+        <result property="name" column="name"/>
+        <association property="grade" columnPrefix="grade_"
+                    resultMap="com.solvd.universitymanager.persistence.GradeRepository.GradeResultMap"/>
+    </resultMap>
+</mapper>

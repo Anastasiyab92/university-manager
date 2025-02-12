@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.solvd.universitymanager.persistence.FacultyRepository">
+    <insert id="create" keyColumn="id" keyProperty="faculty.id" useGeneratedKeys="true">
+        Insert into faculties (name, university_id) Values (#{faculty.name}, #{universityId})
+    </insert>
+
+    <select id="findById" resultMap="FacultyResultMap">
+        Select
+        f.id AS faculty_id,
+        f.name AS faculty_name,
+        f.university_id AS university_id
+        From faculties f
+        Where id = #{id}
+    </select>
+
+    <select id="findAll" resultMap="FacultyResultMap">
+        Select
+        f.id AS faculty_id,
+        f.name AS faculty_name,
+        f.address AS faculty_address
+        From faculties f
+    </select>
+
+    <select id="findAllWithDepartments" resultMap="FacultyWithDepartmentsResultMap">
+        Select
+        f.id AS faculty_id, f.name AS faculty_name,
+        d.id AS department_id, d.name AS department_name,
+        c.id AS course_id, c.code AS course_code, c.name AS course_name
+        FROM faculties f
+        LEFT JOIN departments d ON f.id = d.faculty_id
+        LEFT JOIN courses c ON d.id = c.department_id
+    </select>
+
+    <update id="update">
+        Update faculties SET name = #{name}, university_id = #{universityId}
+        Where id = #{id}
+    </update>
+
+    <delete id="delete">
+        Delete From faculties
+        Where id = #{id}
+    </delete>
+
+    <resultMap id="FacultyResultMap" type="com.solvd.universitymanager.domain.core.Faculty" autoMapping="false">
+        <id property="id" column="id"/>
+        <result property="name" column="name"/>
+    </resultMap>
+    <resultMap id="FacultyWithDepartmentsResultMap" type="com.solvd.universitymanager.domain.core.Faculty" autoMapping="false">
+        <id property="id" column="id"/>
+        <result property="name" column="name"/>
+        <collection property="departments" columnPrefix="department_"
+                    resultMap="com.solvd.universitymanager.persistence.DepartmentRepository.DepartmentWithCoursesResultMap"/>
+    </resultMap>
+</mapper>

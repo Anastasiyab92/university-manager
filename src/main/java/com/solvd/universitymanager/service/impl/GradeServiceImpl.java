@@ -3,7 +3,6 @@ package com.solvd.universitymanager.service.impl;
 import com.solvd.universitymanager.domain.courses.Grade;
 import com.solvd.universitymanager.persistence.GradeRepository;
 import com.solvd.universitymanager.persistence.impl.GradeMapperImpl;
-import com.solvd.universitymanager.persistence.impl.GradeRepositoryImpl;
 import com.solvd.universitymanager.service.GradeService;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;

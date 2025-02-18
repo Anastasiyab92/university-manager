@@ -33,6 +33,7 @@ public class Course {
     private List<Schedule> schedules;
     @JsonIgnore
     private List<Student> students;
+    private EnrollmentNotifier notifier;
 
 
     public Integer getId() {
@@ -59,11 +60,19 @@ public class Course {
         this.name = name;
     }
 
+    public Grade getGrade() {
+        return grade;
+    }
+
+    public void setGrade(Grade grade) {
+        this.grade = grade;
+    }
+
     public List<Instructor> getInstructors() {
         return instructors;
     }
 
-    public void setInstructor(List<Instructor> instructors) {
+    public void setInstructors(List<Instructor> instructors) {
         this.instructors = instructors;
     }
 
@@ -83,13 +92,19 @@ public class Course {
         this.students = students;
     }
 
-    public Grade getGrade() {
-        return grade;
+    public void enrollStudent(Student student) {
+        students.add(student);
+        notifier.notifyStudentEnrolled(student, this);
     }
 
-    public void setGrade(Grade grade) {
-        this.grade = grade;
+    public EnrollmentNotifier getNotifier() {
+        return notifier;
     }
+
+    public void setNotifier(EnrollmentNotifier notifier) {
+        this.notifier = notifier;
+    }
+
 
     @Override
     public String toString() {

@@ -4,7 +4,6 @@ import com.solvd.universitymanager.domain.courses.Course;
 import com.solvd.universitymanager.domain.courses.Grade;
 import com.solvd.universitymanager.persistence.CourseRepository;
 import com.solvd.universitymanager.persistence.impl.CourseMapperImpl;
-import com.solvd.universitymanager.persistence.impl.CourseRepositoryImpl;
 import com.solvd.universitymanager.service.CourseService;
 import com.solvd.universitymanager.service.GradeService;
 import org.apache.logging.log4j.LogManager;

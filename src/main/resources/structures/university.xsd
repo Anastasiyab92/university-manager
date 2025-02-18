@@ -43,19 +43,20 @@
         <xs:sequence>
             <xs:element name="code" type="xs:integer"/>
             <xs:element name="name" type="xs:string"/>
-            <xs:element name="schedule" type="schedule" maxOccurs="unbounded"/>
-            <xs:element name="grade">
+            <xs:element name="schedules">
                 <xs:complexType>
                     <xs:sequence>
-                        <xs:element name="grade" type="grade"/>
+                        <xs:element name="schedule" type="schedule" maxOccurs="unbounded"/>
                     </xs:sequence>
                 </xs:complexType>
             </xs:element>
-        </xs:sequence>
-    </xs:complexType>
-    <xs:complexType name="grade">
-        <xs:sequence>
-            <xs:element name="gradeValue" type="xs:integer"/>
+            <xs:element name="grade">
+                <xs:complexType>
+                    <xs:sequence>
+                        <xs:element name="gradeValue" type="xs:integer"/>
+                    </xs:sequence>
+                </xs:complexType>
+            </xs:element>
         </xs:sequence>
     </xs:complexType>
     <xs:complexType name="schedule">

@@ -2,14 +2,22 @@ package com.solvd.universitymanager.domain.people;
 
 import java.time.LocalDate;
 
-public class Student {
+public class Student implements Person {
 
+    private final String firstName;
+    private final String lastName;
+    private final String email;
+    private final LocalDate yearOfReceipt;
+    private final String major;
     private Long id;
-    private String firstName;
-    private String lastName;
-    private String email;
-    private LocalDate yearOfReceipt;
-    private String major;
+
+    public Student(Builder builder) {
+        this.firstName = builder.firstName;
+        this.lastName = builder.lastName;
+        this.email = builder.email;
+        this.yearOfReceipt = builder.yearOfReceipt;
+        this.major = builder.major;
+    }
 
     public Long getId() {
         return id;
@@ -19,43 +27,67 @@ public class Student {
         this.id = id;
     }
 
+    @Override
     public String getFirstName() {
         return firstName;
     }
 
-    public void setFirstName(String firstName) {
-        this.firstName = firstName;
-    }
-
+    @Override
     public String getLastName() {
         return lastName;
     }
 
-    public void setLastName(String lastName) {
-        this.lastName = lastName;
-    }
-
+    @Override
     public String getEmail() {
         return email;
-    }
-
-    public void setEmail(String email) {
-        this.email = email;
     }
 
     public LocalDate getYearOfReceipt() {
         return yearOfReceipt;
     }
 
-    public void setYearOfReceipt(LocalDate yearOfReceipt) {
-        this.yearOfReceipt = yearOfReceipt;
-    }
-
     public String getMajor() {
         return major;
     }
 
-    public void setMajor(String major) {
-        this.major = major;
+    @Override
+    public String toString() {
+        return "Student{" +
+                "id=" + id +
+                ", firstName='" + firstName + '\'' +
+                ", lastName='" + lastName + '\'' +
+                ", email='" + email + '\'' +
+                ", yearOfReceipt=" + yearOfReceipt +
+                ", major='" + major + '\'' +
+                '}';
+    }
+
+    public static class Builder {
+
+        private final String firstName;
+        private final String lastName;
+        private final String email;
+        private LocalDate yearOfReceipt;
+        private String major;
+
+        public Builder(String firstName, String lastName, String email) {
+            this.firstName = firstName;
+            this.lastName = lastName;
+            this.email = email;
+        }
+
+        public Builder setYearOfReceipt(LocalDate yearOfReceipt) {
+            this.yearOfReceipt = yearOfReceipt;
+            return this;
+        }
+
+        public Builder setMajor(String major) {
+            this.major = major;
+            return this;
+        }
+
+        public Student build() {
+            return new Student(this);
+        }
     }
 }

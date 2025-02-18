@@ -1,12 +1,19 @@
 package com.solvd.universitymanager.domain.people;
 
-public class Instructor {
+public class Instructor implements Person {
 
+    private final String firstName;
+    private final String lastName;
+    private final String email;
+    private final String qualification;
     private Long id;
-    private String firstName;
-    private String lastName;
-    private String email;
-    private String qualification;
+
+    public Instructor(Builder builder) {
+        this.firstName = builder.firstName;
+        this.lastName = builder.lastName;
+        this.email = builder.email;
+        this.qualification = builder.qualification;
+    }
 
     public Long getId() {
         return id;
@@ -20,31 +27,50 @@ public class Instructor {
         return firstName;
     }
 
-    public void setFirstName(String firstName) {
-        this.firstName = firstName;
-    }
-
     public String getLastName() {
         return lastName;
-    }
-
-    public void setLastName(String lastName) {
-        this.lastName = lastName;
     }
 
     public String getEmail() {
         return email;
     }
 
-    public void setEmail(String email) {
-        this.email = email;
-    }
-
     public String getQualification() {
         return qualification;
     }
 
-    public void setQualification(String qualification) {
-        this.qualification = qualification;
+    @Override
+    public String toString() {
+        return "Instructor{" +
+                "id=" + id +
+                ", firstName='" + firstName + '\'' +
+                ", lastName='" + lastName + '\'' +
+                ", email='" + email + '\'' +
+                ", qualification='" + qualification + '\'' +
+                '}';
     }
+
+    public static class Builder {
+
+        private final String firstName;
+        private final String lastName;
+        private final String email;
+        private String qualification;
+
+        public Builder(String firstName, String lastName, String email) {
+            this.firstName = firstName;
+            this.lastName = lastName;
+            this.email = email;
+        }
+
+        public Builder setQualification(String qualification) {
+            this.qualification = qualification;
+            return this;
+        }
+
+        public Instructor build() {
+            return new Instructor(this);
+        }
+    }
+
 }

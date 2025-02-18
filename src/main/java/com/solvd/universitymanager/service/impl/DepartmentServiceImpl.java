@@ -4,7 +4,6 @@ import com.solvd.universitymanager.domain.core.Department;
 import com.solvd.universitymanager.domain.courses.Course;
 import com.solvd.universitymanager.persistence.DepartmentRepository;
 import com.solvd.universitymanager.persistence.impl.DepartmentMapperImpl;
-import com.solvd.universitymanager.persistence.impl.DepartmentRepositoryImpl;
 import com.solvd.universitymanager.service.CourseService;
 import com.solvd.universitymanager.service.DepartmentService;
 import org.apache.logging.log4j.LogManager;

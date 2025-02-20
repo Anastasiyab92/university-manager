@@ -13,7 +13,7 @@
         c.department_id AS department_id,
         c.grade_id AS grade_id
         From courses c
-        Where id = #{id}
+        Where c.id = #{id}
     </select>
 
     <select id="findAll" resultMap="CourseResultMap">
@@ -51,9 +51,9 @@
     </resultMap>
 
     <resultMap id="CourseWithGradeResultMap" type="com.solvd.universitymanager.domain.courses.Course" autoMapping="false">
-        <id property="id" column="id"/>
-        <result property="code" column="code"/>
-        <result property="name" column="name"/>
+        <id property="id" column="course_id"/>
+        <result property="code" column="course_code"/>
+        <result property="name" column="course_name"/>
         <association property="grade" columnPrefix="grade_"
                     resultMap="com.solvd.universitymanager.persistence.GradeRepository.GradeResultMap"/>
     </resultMap>

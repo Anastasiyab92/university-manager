@@ -12,7 +12,7 @@
         u.name AS university_name,
         u.address AS university_address
         From universities u
-        Where id = #{id}
+        Where u.id = #{id}
     </select>
 
     <select id="findAll" resultMap="UniversityResultMap">
@@ -48,14 +48,14 @@
     </delete>
 
     <resultMap id="UniversityResultMap" type="com.solvd.universitymanager.domain.core.University" autoMapping="false">
-        <id property="id" column="id"/>
-        <result property="name" column="name"/>
-        <result property="address" column="address"/>
+        <id property="id" column="university_id"/>
+        <result property="name" column="university_name"/>
+        <result property="address" column="university_address"/>
     </resultMap>
     <resultMap id="UniversityWithFacultiesResultMap" type="com.solvd.universitymanager.domain.core.University" autoMapping="false">
-        <id property="id" column="id"/>
-        <result property="name" column="name"/>
-        <result property="address" column="address"/>
+        <id property="id" column="university_id"/>
+        <result property="name" column="university_name"/>
+        <result property="address" column="university_address"/>
         <collection property="faculties" columnPrefix="faculty_"
                     resultMap="com.solvd.universitymanager.persistence.FacultyRepository.FacultyWithDepartmentsResultMap"/>
     </resultMap>

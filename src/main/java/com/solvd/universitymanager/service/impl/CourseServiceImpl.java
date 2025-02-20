@@ -32,8 +32,17 @@ public class CourseServiceImpl implements CourseService {
             Grade grades = gradeService.addGrade(course.getGrade());
             course.setGrade(grades);
         }
-        courseRepository.create(course, departmentId);
+
+        if (!courseExists(course.getCode())) {
+            courseRepository.create(course, departmentId);
+        } else {
+            LOGGER.warn("Course with code {} already exists!", course.getCode());
+        }
         return course;
+    }
+
+    public boolean courseExists(Integer code) {
+        return courseRepository.findById(code) != null;
     }
 
     @Override

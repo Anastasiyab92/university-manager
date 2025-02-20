@@ -66,7 +66,7 @@ public class UniversityRepositoryImpl implements UniversityRepository {
                 university = new University();
                 university.setId(rs.getInt("id"));
                 university.setName(rs.getString("name"));
-                university.setAddress("address");
+                university.setAddress(rs.getString("address"));
             }
         } catch (SQLException e) {
             LOGGER.error(e.getMessage());
@@ -86,7 +86,7 @@ public class UniversityRepositoryImpl implements UniversityRepository {
                 University university = new University();
                 university.setId(rs.getInt("id"));
                 university.setName(rs.getString("name"));
-                university.setAddress("address");
+                university.setAddress(rs.getString("address"));
                 universities.add(university);
             }
         } catch (SQLException e) {
@@ -94,6 +94,7 @@ public class UniversityRepositoryImpl implements UniversityRepository {
         } finally {
             CONNECTION_POOL.releaseConnection(connection);
         }
+        LOGGER.info("Loaded universities: {}", universities);
         return universities;
     }
 
@@ -104,6 +105,7 @@ public class UniversityRepositoryImpl implements UniversityRepository {
         try (PreparedStatement ps = connection.prepareStatement(SELECT_ALL_WITH_JOIN)) {
             ResultSet rs = ps.executeQuery();
             while (rs.next()) {
+                LOGGER.info("University id {}, name {}", rs.getInt("university_id"), rs.getString("university_name"));
                 University university = new University();
                 university.setId(rs.getInt("university_id"));
                 university.setName(rs.getString("university_name"));
@@ -151,9 +153,9 @@ public class UniversityRepositoryImpl implements UniversityRepository {
     public void update(University university) {
         Connection connection = CONNECTION_POOL.getConnection();
         try (PreparedStatement ps = connection.prepareStatement(UPDATE_SQL)) {
-            ps.setInt(1, university.getId());
-            ps.setString(2, university.getName());
-            ps.setString(3, university.getAddress());
+            ps.setString(1, university.getName());
+            ps.setString(2, university.getAddress());
+            ps.setInt(3, university.getId());
             ps.executeUpdate();
         } catch (SQLException e) {
             LOGGER.error(e.getMessage());

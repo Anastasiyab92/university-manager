@@ -11,7 +11,7 @@
         d.name AS department_name,
         d.faculty_id AS faculty_id
         From departments d
-        Where id = #{id}
+        Where d.id = #{id}
     </select>
 
     <select id="findAll" resultMap="DepartmentResultMap">
@@ -40,12 +40,12 @@
     </delete>
 
     <resultMap id="DepartmentResultMap" type="com.solvd.universitymanager.domain.core.Department" autoMapping="false">
-        <id property="id" column="id"/>
-        <result property="name" column="name"/>
+        <id property="id" column="department_id"/>
+        <result property="name" column="department_name"/>
     </resultMap>
     <resultMap id="DepartmentWithCoursesResultMap" type="com.solvd.universitymanager.domain.core.Department" autoMapping="false">
-        <id property="id" column="id"/>
-        <result property="name" column="name"/>
+        <id property="id" column="department_id"/>
+        <result property="name" column="department_name"/>
         <collection property="courses" columnPrefix="course_"
                     resultMap="com.solvd.universitymanager.persistence.CourseRepository.CourseWithGradeResultMap"/>
     </resultMap>

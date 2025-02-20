@@ -11,7 +11,7 @@
         g.id As grade_id,
         g.value AS value
         From grades g
-        Where id = #{id}
+        Where g.id = #{id}
     </select>
 
     <select id="findAll" resultMap="GradeResultMap">
@@ -32,7 +32,7 @@
     </delete>
 
     <resultMap id="GradeResultMap" type="com.solvd.universitymanager.domain.courses.Grade" autoMapping="false">
-        <id property="id" column="id"/>
+        <id property="id" column="grade_id"/>
         <result property="gradeValue" column="value"/>
     </resultMap>
 </mapper>

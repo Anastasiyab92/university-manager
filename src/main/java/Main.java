@@ -54,7 +54,7 @@ public class Main {
         Department departmentMathematics = mathematicalInstitute.createDepartment("Applied Mathematics", new ArrayList<>());
         departmentMathematics.getCourses().add(courseNumericalMethods);
         Faculty facultyMathematical = mathematicalInstitute.createFaculty("Mathematical Institute", new ArrayList<>());
-        facultyMathematical.getDepartments().add(departmentEnglish);
+        facultyMathematical.getDepartments().add(departmentMathematics);
 
         //Listener pattern
         EnrollmentNotifier notifier = new EnrollmentNotifier();
@@ -74,6 +74,8 @@ public class Main {
         oxfordUniversity.getFaculties().add(facultyHumanitiesDivision);
 
         universityService.addUniversity(oxfordUniversity);
+
+//        List<University> universities = universityService.listUniversities();
 
         List<University> universityList = universityService.findAllUniversitiesWithFaculties();
 

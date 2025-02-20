@@ -33,6 +33,6 @@
 
     <resultMap id="GradeResultMap" type="com.solvd.universitymanager.domain.courses.Grade" autoMapping="false">
         <id property="id" column="grade_id"/>
-        <result property="gradeValue" column="value"/>
+        <result property="gradeValue" column="grade_value"/>
     </resultMap>
 </mapper>

@@ -54,7 +54,7 @@
         <id property="id" column="course_id"/>
         <result property="code" column="course_code"/>
         <result property="name" column="course_name"/>
-        <association property="grade" columnPrefix="grade_"
+        <association property="grade"
                     resultMap="com.solvd.universitymanager.persistence.GradeRepository.GradeResultMap"/>
     </resultMap>
 </mapper>

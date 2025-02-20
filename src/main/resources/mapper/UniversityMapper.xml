@@ -56,7 +56,7 @@
         <id property="id" column="university_id"/>
         <result property="name" column="university_name"/>
         <result property="address" column="university_address"/>
-        <collection property="faculties" columnPrefix="faculty_"
+        <collection property="faculties"
                     resultMap="com.solvd.universitymanager.persistence.FacultyRepository.FacultyWithDepartmentsResultMap"/>
     </resultMap>
 </mapper>

@@ -46,7 +46,7 @@
     <resultMap id="DepartmentWithCoursesResultMap" type="com.solvd.universitymanager.domain.core.Department" autoMapping="false">
         <id property="id" column="department_id"/>
         <result property="name" column="department_name"/>
-        <collection property="courses" columnPrefix="course_"
+        <collection property="courses"
                     resultMap="com.solvd.universitymanager.persistence.CourseRepository.CourseWithGradeResultMap"/>
     </resultMap>
 </mapper>
